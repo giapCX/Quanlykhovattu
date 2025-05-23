@@ -7,22 +7,24 @@ package Controller;
 
 import DAO.UserDAO;
 import Dal.DBContext;
+import Model.Role;
 import Model.User;
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.sql.Connection;
-
 
 /**
  *
  * @author quanh
  */
-@WebServlet(name="ListUserServlet", urlPatterns={"/listuser"})
-public class ListUserServlet extends HttpServlet {
+@WebServlet(name="EditUserServlet", urlPatterns={"/edituser"})
+public class EditUserServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +41,10 @@ public class ListUserServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListUserServlet</title>");  
+            out.println("<title>Servlet EditUserServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListUserServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditUserServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,18 +61,19 @@ public class ListUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
         try {
             Connection conn = DBContext.getConnection();
             UserDAO dao = new UserDAO(conn);
-            List<User> userList = dao.getAllUsers();
-            request.setAttribute("data", userList);
-            request.getRequestDispatcher("listUser.jsp").forward(request, response);
+            User user = dao.getUserById(userId);
+            List<Role> roles = dao.getAllRoles();
+            request.setAttribute("user", user);
+            request.setAttribute("roles", roles);
+            request.getRequestDispatcher("editUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(500, "Internal Server Error");
         }
-    }
-    
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -82,8 +85,19 @@ public class ListUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        int roleId = Integer.parseInt(request.getParameter("roleId"));
+        String status = request.getParameter("status");
+
+        try {
+            Connection conn = DBContext.getConnection();
+            UserDAO dao = new UserDAO(conn);
+            dao.updateUserRoleAndStatus(userId, roleId, status);
+            response.sendRedirect("listuser");
+        } catch (Exception e) {
+            e.printStackTrace();
+           
+    }}
 
     /** 
      * Returns a short description of the servlet.
