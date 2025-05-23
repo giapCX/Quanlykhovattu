@@ -64,7 +64,7 @@ public class ListUserServlet extends HttpServlet {
             UserDAO dao = new UserDAO(conn);
             List<User> userList = dao.getAllUsers();
             request.setAttribute("data", userList);
-            request.getRequestDispatcher("listUser.jsp").forward(request, response);
+            request.getRequestDispatcher("/View/Admin/listUser.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500, "Internal Server Error");

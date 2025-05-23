@@ -69,8 +69,8 @@ public class EditUserServlet extends HttpServlet {
             List<Role> roles = dao.getAllRoles();
             request.setAttribute("user", user);
             request.setAttribute("roles", roles);
-            request.getRequestDispatcher("editUser.jsp").forward(request, response);
-        } catch (Exception e) {
+            request.getRequestDispatcher("/View/Admin/editUser.jsp").forward(request, response);
+        } catch (Exception e){ 
             e.printStackTrace();
         }
     } 
