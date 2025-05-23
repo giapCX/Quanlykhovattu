@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Model.ResetRequest;
+import Model.Reset_request;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author ASUS
  */
-public class ResetPassword_Controller extends HttpServlet {
+public class Reset_password_controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,24 +52,24 @@ public class ResetPassword_Controller extends HttpServlet {
         processRequest(request, response);
     }
 
-    private static final ArrayList<ResetRequest> resetRequests = new ArrayList<>();
+    private static final ArrayList<Reset_request> resetRequests = new ArrayList<>();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
 
-        ResetRequest req = new ResetRequest(username, "pending");
+        Reset_request req = new Reset_request(username, "pending");
         synchronized (resetRequests) {
             resetRequests.add(req);
         }
 
         request.setAttribute("message", " Yêu cầu đã được gửi đến Admin.");
-        RequestDispatcher rd = request.getRequestDispatcher("ResetPassword.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Resetpassword.jsp");
         rd.forward(request, response);
 
     }
     
-    public static ArrayList<ResetRequest> getResetRequests() {
+    public static ArrayList<Reset_request> getResetRequests() {
         return resetRequests;
     }
 

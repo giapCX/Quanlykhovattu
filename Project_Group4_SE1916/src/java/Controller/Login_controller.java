@@ -13,13 +13,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginController extends HttpServlet {
+public class Login_controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
     }
 
     @Override
@@ -40,11 +40,11 @@ public class LoginController extends HttpServlet {
                 // Đăng nhập thành công
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("Home.jsp");
             } else {
                 // Sai thông tin đăng nhập
                 request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng.");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
 
         } catch (SQLException e) {

@@ -10,11 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class Userdao {
 
     private Connection conn;
 
-    public UserDAO(Connection conn) {
+    public Userdao(Connection conn) {
         this.conn = conn;
     }
 

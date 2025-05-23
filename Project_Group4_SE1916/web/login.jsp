@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập - Quản lý kho vật tư</title>
+    <title>Login - Inventory Management</title>
 
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,16 +44,16 @@
 </head>
 <body>
     <div class="login-container">
-        <h4 class="login-title">Đăng nhập hệ thống</h4>
+        <h4 class="login-title">Login to the System</h4>
 
         <form action="login" method="post">
             <div class="mb-3">
-                <label for="username" class="form-label">Tên đăng nhập</label>
+                <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required autofocus>
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Mật khẩu</label>
+                <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
 
@@ -63,8 +63,13 @@
                 </div>
             <% } %>
 
-            <button type="submit" class="btn btn-primary btn-login">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary btn-login">Login</button>
         </form>
+
+        <!-- Thêm nút Reset Password -->
+        <div class="mt-3 text-center">
+            <a href="Resetpassword.jsp" class="btn btn-link">Forget Password</a>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->

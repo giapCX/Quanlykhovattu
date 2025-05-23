@@ -5,7 +5,7 @@
 
 package Controller;
 
-import DAO.UserDAO;
+import DAO.Userdao;
 import Dal.DBContext;
 import Model.User;
 import jakarta.servlet.*;
@@ -22,7 +22,7 @@ import java.sql.Connection;
  * @author quanh
  */
 @WebServlet(name="ListUserServlet", urlPatterns={"/listuser"})
-public class ListUserServlet extends HttpServlet {
+public class List_user_servlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -61,10 +61,10 @@ public class ListUserServlet extends HttpServlet {
     throws ServletException, IOException {
         try {
             Connection conn = DBContext.getConnection();
-            UserDAO dao = new UserDAO(conn);
+            Userdao dao = new Userdao(conn);
             List<User> userList = dao.getAllUsers();
             request.setAttribute("data", userList);
-            request.getRequestDispatcher("/View/Admin/listUser.jsp").forward(request, response);
+            request.getRequestDispatcher("/View/Admin/List_user.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500, "Internal Server Error");

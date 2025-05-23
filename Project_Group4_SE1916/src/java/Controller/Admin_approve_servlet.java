@@ -5,7 +5,7 @@
 
 package Controller;
 
-import Model.ResetRequest;
+import Model.Reset_request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,13 +18,13 @@ import java.util.ArrayList;
  *
  * @author ASUS
  */
-public class AdminApproveServlet extends HttpServlet {
+public class Admin_approve_servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
 
-        ArrayList<ResetRequest> requests = ResetPassword_Controller.getResetRequests();
+        ArrayList<Reset_request> requests = Reset_password_controller.getResetRequests();
         synchronized (requests) {
-            for (ResetRequest req : requests) {
+            for (Reset_request req : requests) {
                 if (req.getUsername().equals(username) && req.getStatus().equals("pending")) {
                     req.setStatus("done");
 
@@ -34,6 +34,6 @@ public class AdminApproveServlet extends HttpServlet {
             }
         }
 
-        response.sendRedirect("adminView.jsp");
+        response.sendRedirect("Admin_view.jsp");
     }
 }

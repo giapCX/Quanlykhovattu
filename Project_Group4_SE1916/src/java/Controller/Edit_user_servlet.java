@@ -5,7 +5,7 @@
 
 package Controller;
 
-import DAO.UserDAO;
+import DAO.Userdao;
 import Dal.DBContext;
 import Model.Role;
 import Model.User;
@@ -24,7 +24,7 @@ import java.sql.Connection;
  * @author quanh
  */
 @WebServlet(name="EditUserServlet", urlPatterns={"/edituser"})
-public class EditUserServlet extends HttpServlet {
+public class Edit_user_servlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -64,12 +64,12 @@ public class EditUserServlet extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         try {
             Connection conn = DBContext.getConnection();
-            UserDAO dao = new UserDAO(conn);
+            Userdao dao = new Userdao(conn);
             User user = dao.getUserById(userId);
             List<Role> roles = dao.getAllRoles();
             request.setAttribute("user", user);
             request.setAttribute("roles", roles);
-            request.getRequestDispatcher("/View/Admin/editUser.jsp").forward(request, response);
+            request.getRequestDispatcher("/View/Admin/Edit_user.jsp").forward(request, response);
         } catch (Exception e){ 
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class EditUserServlet extends HttpServlet {
 
         try {
             Connection conn = DBContext.getConnection();
-            UserDAO dao = new UserDAO(conn);
+            Userdao dao = new Userdao(conn);
             dao.updateUserRoleAndStatus(userId, roleId, status);
             response.sendRedirect("listuser");
         } catch (Exception e) {

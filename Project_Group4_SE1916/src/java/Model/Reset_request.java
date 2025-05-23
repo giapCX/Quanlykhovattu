@@ -8,12 +8,12 @@ package Model;
  *
  * @author ASUS
  */
-public class ResetRequest {
+public class Reset_request {
 
     private String username;
     private String status;
 
-    public ResetRequest(String username, String status) {
+    public Reset_request(String username, String status) {
         this.username = username;
         this.status = status;
     }
