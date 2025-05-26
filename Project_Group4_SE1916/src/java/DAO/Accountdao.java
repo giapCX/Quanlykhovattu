@@ -19,10 +19,18 @@ import java.util.logging.Logger;
 public class Accountdao extends DBContext {
     
     protected Connection connection;
+
+    public Accountdao() {
+        this.connection = DBContext.getConnection();
+    }
+
+    public Accountdao(Connection connection) {
+        this.connection = connection;
+    }
+    
+    
     public void updatePassword(String username, String newpassword) {
-        String sql = "UPDATE [dbo].[Account]\n"
-                + "   SET [password] = ?\n"
-                + " WHERE username = ?";
+        String sql = "UPDATE users SET password_hash = ?, status = 'active' WHERE username = ?";
 //        securityProcessorCore spc = new securityProcessorCore();
         try {
             PreparedStatement stm = connection.prepareStatement(sql);

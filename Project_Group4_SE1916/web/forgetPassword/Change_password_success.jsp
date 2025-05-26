@@ -6,45 +6,133 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../Assets/css/styleSignup.css" />
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <link rel="icon" href="../Assets/icon/favicon.png"/>
-        <title>Change password success</title>
+        <title>Đổi mật khẩu thành công</title>
         <style>
-            .signup{
-                border-radius: 12px;
-                background: white;
+            body {
+                background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Inter', sans-serif;
+                overflow: hidden;
             }
-            .signup-label{
-                color: black;
+            .signup {
+                background: white;
+                border-radius: 1.5rem;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+                padding: 2.5rem;
+                width: 100%;
+                max-width: 450px;
+                text-align: center;
+                animation: slideUp 0.5s ease-out;
+            }
+            @keyframes slideUp {
+                from {
+                    transform: translateY(50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            .signup-heading {
+                font-size: 2rem;
+                font-weight: 800;
+                color: lightgreen;
+                margin-bottom: 1rem;
+                position: relative;
+            }
+            .signup-heading::before {
+                content: '✅';
+                display: block;
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            .alert {
+                color: #EF4444;
+                font-size: 0.9rem;
+                text-align: center;
+                margin-bottom: 1rem;
+                animation: fadeIn 0.5s ease-in;
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            .signup-submit {
+                display: inline-block;
+                width: 100%;
+                padding: 0.85rem;
+                background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+                color: white;
+                font-weight: 600;
+                border-radius: 0.75rem;
+                text-decoration: none;
+                text-align: center;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .signup-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            }
+            .signup-submit:active {
+                transform: translateY(0);
+            }
+            .bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+                opacity: 0.1;
+                z-index: -1;
             }
         </style>
     </head>
-
     <body>
-        <div class="bg">
-        </div>
+        <div class="bg"></div>
         <div class="signup">
-            <h1 class="signup-heading">Đổi mật khẩu thành công</h1>
-            <!-- <button class="signup-social">
-                  <img class="fa fa-google signup-social-icon" src="/img/logoGG.png">
-                  <span class="signup-social-text">Đăng kí bằng tài khoản Google</span>
-                </button> -->
-
-            <div class="alert alert-danger" role="alert" style="color: red; margin-bottom: 1em; text-align: center"">
-                ${mess1}
-            </div>
-            <div class="alert alert-danger" role="alert" style="color: red; margin-bottom: 1em; text-align: center"">
-                ${mess2}
-            </div>
-            <a href="../home.jsp">
-            <input class="signup-submit" type="submit" value="Về trang chủ">
-            </a>
-            
+            <h1 class="signup-heading">Đổi mật khẩu thành công!</h1>
+            <% if (request.getAttribute("mess1") != null) { %>
+            <div class="alert alert-danger" role="alert">${mess1}</div>
+            <% } %>
+            <% if (request.getAttribute("mess2") != null) { %>
+            <div class="alert alert-danger" role="alert">${mess2}</div>
+            <% } %>
+            <%
+                
+                String role = (String) session.getAttribute("role");
+                String redirectUrl = "../Home.jsp"; // Default fallback
+                if (role != null) {
+                    switch (role.toLowerCase()) {
+                        case "director":
+                            redirectUrl = "../giamdoc_hehe.jsp";
+                            break;
+                        case "employee":
+                            redirectUrl = "../nhanviencongty_hehe.jsp";
+                            break;
+                        case "warehouse":
+                            redirectUrl = "../nhanvienkho_hehe.jsp";
+                            break;
+                    }
+                }
+            %>
+            <a href="<%= redirectUrl%>" class="signup-submit">Về trang chủ</a>
         </div>
     </body>
 </html>

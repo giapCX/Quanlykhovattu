@@ -6,54 +6,132 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../Assets/css/styleSignup.css" />
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <link rel="icon" href="../Assets/icon/favicon.png"/>
-        <title>Change password</title>
+        <title>Change Password</title>
         <style>
-        .signup{
-                border-radius: 12px;
+            body {
+                background: linear-gradient(135deg, #6B7280, #1F2937);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Inter', sans-serif;
+            }
+            .signup {
                 background: white;
+                border-radius: 1rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 2rem;
+                width: 100%;
+                max-width: 400px;
             }
-            .signup-label{
-                color: black;
+            .signup-heading {
+                font-size: 1.875rem;
+                font-weight: 700;
+                color: #1F2937;
+                text-align: center;
+                margin-bottom: 1.5rem;
             }
-            </style>
+            .signup-label {
+                color: #374151;
+                font-size: 0.875rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+            .signup-input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #D1D5DB;
+                border-radius: 0.5rem;
+                font-size: 1rem;
+                color: #1F2937;
+                transition: border-color 0.2s ease-in-out;
+            }
+            .signup-input:focus {
+                outline: none;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+            .signup-submit {
+                width: 100%;
+                padding: 0.75rem;
+                background: #3B82F6;
+                color: white;
+                font-weight: 600;
+                border-radius: 0.5rem;
+                border: none;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+            .signup-submit:hover {
+                background: #2563EB;
+            }
+            .alert {
+                color: #DC2626;
+                font-size: 0.875rem;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            .signup-already {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            .signup-login-link {
+                color: #3B82F6;
+                font-weight: 500;
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+            .signup-login-link:hover {
+                color: #2563EB;
+                text-decoration: underline;
+            }
+        </style>
     </head>
-
     <body>
-        <div class="bg">
-        </div>
         <div class="signup">
-            <h1 class="signup-heading">Đổi mật khẩu</h1>
-            <!-- <button class="signup-social">
-                  <img class="fa fa-google signup-social-icon" src="/img/logoGG.png">
-                  <span class="signup-social-text">Đăng kí bằng tài khoản Google</span>
-                </button> -->
+            <h1 class="signup-heading">Change Password</h1>
             <form action="change_password" method="POST" class="signup-form" autocomplete="off">
-
                 <label for="password" class="signup-label">Mật khẩu mới</label>
-                <input type="password" name="password" class="signup-input">
+                <input type="password" name="password" class="signup-input" required>
 
                 <label for="cfpassword" class="signup-label">Nhập lại mật khẩu mới</label>
-                <input type="password" name="cfpassword" class="signup-input">
-            <div class="alert alert-danger" role="alert" style="color: red; margin-bottom: 1em; text-align: center"">
-                ${mess1}
-            </div>
-            <div class="alert alert-danger" role="alert" style="color: red; margin-bottom: 1em; text-align: center"">
-                ${mess2}
-            </div>
+                <input type="password" name="cfpassword" class="signup-input" required>
+               
 
                 <input class="signup-submit" type="submit" value="Xác nhận">
             </form>
-            <p class="signup-already">
-
-                <a href="Home.jsp" class="signup-login-link">Hủy</a>
-            </p>
+            <% if (request.getAttribute("mess1") != null) { %>
+            <div class="alert alert-danger" role="alert">${mess1}</div>
+            <% } %>
+            <% if (request.getAttribute("mess2") != null) { %>
+            <div class="alert alert-danger" role="alert">${mess2}</div>
+            <% } %>
+            <%
+                String role = (String) session.getAttribute("role");
+                String redirectUrl = "Home.jsp"; // Default fallback
+                if (role != null) {
+                    switch (role.toLowerCase()) {
+                        case "director":
+                            redirectUrl = "giamdoc_hehe.jsp";
+                            break;
+                        case "employee":
+                            redirectUrl = "nhanviencongty_hehe.jsp";
+                            break;
+                        case "warehouse":
+                            redirectUrl = "nhanvienkho_hehe.jsp";
+                            break;
+                    }
+                }
+            %>
+            <a href="<%= redirectUrl%>" class="signup-submit">Hủy</a>
         </div>
     </body>
 </html>

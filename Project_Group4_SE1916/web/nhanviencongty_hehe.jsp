@@ -233,7 +233,7 @@
             </a>
         </nav>
         <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
-            <a href="Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="forgetPassword/Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-key mr-3"></i>
                 <span class="text-lg">Đổi mật khẩu</span>
             </a>

@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controller;
 
 import DAO.Accountdao;
@@ -15,17 +14,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import Model.Account;
-
+import Model.User;
 
 public class Change_password extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
         String newPass = request.getParameter("password");
         String newCfPass = request.getParameter("cfpassword");
-        Account acc =  (Account) request.getSession().getAttribute("accountForgetPass");
-        String username = acc.getUsername();
+        User user = new User();
+        session.setAttribute("username", user.getUsername());
+        session.setAttribute("role", user.getRole()); // <- Quan trọng
+        String username = (String) session.getAttribute("username");
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         if (!newPass.equals(newCfPass)) {
             request.setAttribute("mess2", "Mật khẩu không khớp. Vui lòng nhập lại!");
@@ -35,7 +37,7 @@ public class Change_password extends HttpServlet {
                 Accountdao accdb = new Accountdao();
                 accdb.updatePassword(username, newPass);
                 response.sendRedirect("./Change_password_success.jsp");
-                
+
             } else {
                 request.setAttribute("mess1", "Mật khẩu phải bao gồm 8 ký tự trở lên và phải bao gồm chữ hoa, chữ thường, số từ 0 đến 9 và bao gồm ký tự đặc biệt");
                 request.getRequestDispatcher("./Change_password.jsp").forward(request, response);

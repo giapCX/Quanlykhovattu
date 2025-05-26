@@ -58,7 +58,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Change_password</servlet-name>
-        <url-pattern>/change_password</url-pattern>
+        <url-pattern>/forgetPassword/change_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Send_mail</servlet-name>
