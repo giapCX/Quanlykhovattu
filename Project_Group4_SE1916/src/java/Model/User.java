@@ -12,13 +12,14 @@ public class User {
     private String address;
     private String email;
     private String phone;
+    private String imageUrl;
     private Role role;
     private String status;
 
     public User() {
     }
 
-    public User(int userId, String username, String password, String fullName, String address, String email, String phone, Role role, String status) {
+    public User(int userId, String username, String password, String fullName, String address, String email, String phone, String linkIma, Role role, String status) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -26,6 +27,7 @@ public class User {
         this.address = address;
         this.email = email;
         this.phone = phone;
+        this.imageUrl = linkIma;
         this.role = role;
         this.status = status;
     }
@@ -86,6 +88,14 @@ public class User {
         this.phone = phone;
     }
 
+    public String getLinkIma() {
+        return imageUrl;
+    }
+
+    public void setLinkIma(String linkIma) {
+        this.imageUrl = linkIma;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -102,6 +112,7 @@ public class User {
         this.status = status;
     }
 
+   
 
     
 }
