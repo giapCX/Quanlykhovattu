@@ -25,6 +25,13 @@ public class List_user_servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Session Check
+        String username = (String) request.getSession().getAttribute("username");
+        if (username == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
+
         try (Connection conn = getConnection()) {
             UserDAO userDAO = new UserDAO(conn);
             List<User> users = userDAO.getAllUsers();
@@ -32,7 +39,8 @@ public class List_user_servlet extends HttpServlet {
             request.setAttribute("data", users);
             request.getRequestDispatcher("/List_user.jsp").forward(request, response);
         } catch (SQLException e) {
-            throw new ServletException(e);
+            request.setAttribute("error", "Error fetching users: " + e.getMessage());
+            request.getRequestDispatcher("/List_user.jsp").forward(request, response);
         }
     }
 
