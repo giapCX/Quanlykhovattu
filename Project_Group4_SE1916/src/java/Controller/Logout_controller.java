@@ -58,7 +58,7 @@ public class Logout_controller extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("Home.jsp");
     }
 
     /** 
