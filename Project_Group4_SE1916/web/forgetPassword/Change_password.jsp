@@ -34,7 +34,7 @@
                   <img class="fa fa-google signup-social-icon" src="/img/logoGG.png">
                   <span class="signup-social-text">Đăng kí bằng tài khoản Google</span>
                 </button> -->
-            <form action="./changePassword" method="POST" class="signup-form" autocomplete="off">
+            <form action="change_password" method="POST" class="signup-form" autocomplete="off">
 
                 <label for="password" class="signup-label">Mật khẩu mới</label>
                 <input type="password" name="password" class="signup-input">
@@ -52,7 +52,7 @@
             </form>
             <p class="signup-already">
 
-                <a href="home.jsp" class="signup-login-link">Hủy</a>
+                <a href="Home.jsp" class="signup-login-link">Hủy</a>
             </p>
         </div>
     </body>
