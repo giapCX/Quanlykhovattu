@@ -8,8 +8,6 @@
         <servlet-name>List_user_servlet</servlet-name>
         <servlet-class>Controller.List_user_servlet</servlet-class>
     </servlet>
-    
-   
     <servlet>
         <servlet-name>Change_password</servlet-name>
         <servlet-class>Controller.Change_password</servlet-class>
@@ -26,6 +24,14 @@
         <servlet-name>Verify_code</servlet-name>
         <servlet-class>Controller.Verify_code</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout_controller</servlet-name>
+        <servlet-class>Controller.Logout_controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>User_profile_controller</servlet-name>
+        <servlet-class>Controller.User_profile_controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login_controller</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -34,8 +40,6 @@
         <servlet-name>List_user_servlet</servlet-name>
         <url-pattern>/listuser</url-pattern>
     </servlet-mapping>
-    
-   
     <servlet-mapping>
         <servlet-name>Change_password</servlet-name>
         <url-pattern>/change_password</url-pattern>
@@ -51,5 +55,13 @@
     <servlet-mapping>
         <servlet-name>Verify_code</servlet-name>
         <url-pattern>/verify_code</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout_controller</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>User_profile_controller</servlet-name>
+        <url-pattern>/user_profile</url-pattern>
     </servlet-mapping>
 </web-app>

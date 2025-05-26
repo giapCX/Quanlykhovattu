@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="Dal.DBContext" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách Người dùng - Hệ thống Quản lý Vật tư</title>
+    <title>Cài đặt - Hệ thống Quản lý Vật tư</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -114,23 +115,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(31, 41, 55, 0.4);
         }
 
-        .table th, .table td {
-            padding: 0.75rem;
-            vertical-align: middle;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .table th {
-            background-color: #f8fafc;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .dark-mode .table th {
-            background-color: #374151;
-            color: #e2e8f0;
-        }
-
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -194,14 +178,14 @@
                 <span class="text-lg">Báo cáo</span>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
             </a>
-            <a href="Settings.jsp" class="nav-item flex items-center p-3">
+            <a href="List_user.jsp" class="nav-item flex items-center p-3">
+                    <i class="fas fa-cog mr-3 w-6 text-center"></i>
+                    <span class="text-lg">Danh sách người dùng</span>
+                    <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
+                </a>
+            <a href="Settings.jsp" class="nav-item active flex items-center p-3">
                 <i class="fas fa-cog mr-3 w-6 text-center"></i>
                 <span class="text-lg">Cài đặt</span>
-                <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
-            </a>
-            <a href="listuser" class="nav-item active flex items-center p-3">
-                <i class="fas fa-users mr-3 w-6 text-center"></i>
-                <span class="text-lg">Danh sách Người dùng</span>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
             </a>
         </nav>
@@ -222,8 +206,8 @@
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Danh sách Người dùng</h1>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Xem danh sách tất cả người dùng</p>
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Cài đặt</h1>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Quản lý thông tin tài khoản</p>
                 </div>
             </div>
             <div class="flex items-center space-x-6">
@@ -242,43 +226,130 @@
             </div>
         </header>
 
-        <!-- User List -->
-        <div class="card bg-white dark:bg-gray-800 p-6">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Danh sách Người dùng</h2>
+        <!-- User Information -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="card bg-white dark:bg-gray-800 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Thông tin người dùng</h2>
+                    <button id="editProfileBtn" class="text-primary-600 dark:text-primary-400 hover:underline">
+                        <i class="fas fa-edit mr-1"></i> Chỉnh sửa
+                    </button>
+                </div>
+                <%
+                    String fullName = "";
+                    String email = "";
+                    String phone = "";
+                    String roleName = "";
 
-            <% if (request.getAttribute("error") != null) { %>
-                <div class="text-red-500 mb-4"><%= request.getAttribute("error") %></div>
-            <% } %>
+                    Connection conn = null;
+                    try {
+                        conn = new DBContext().getConnection();
+                        if (conn == null) {
+                            throw new SQLException("Database connection failed.");
+                        }
 
-            <div class="overflow-x-auto">
-                <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead>
-                        <tr>
-                            <th>Tên người dùng</th>
-                            <th>Họ và tên</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Vai trò</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="item" items="${data}">
-                            <tr class="border-b dark:border-gray-700">
-                                <td>${item.username}</td>
-                                <td>${item.fullName}</td>
-                                <td>${item.email != null ? item.email : "Chưa cập nhật"}</td>
-                                <td>${item.phone != null ? item.phone : "Chưa cập nhật"}</td>
-                                <td>${item.role.roleName}</td>
-                                <td>
-                                    <span class="${item.status == 'Active' ? 'text-green-500' : 'text-red-500'}">
-                                        ${item.status}
-                                    </span>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                        String sql = "SELECT u.full_name, u.email, u.phone, r.role_name " +
+                                     "FROM users u " +
+                                     "JOIN roles r ON u.role_id = r.role_id " +
+                                     "WHERE u.username = ?";
+                        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                            stmt.setString(1, username);
+                            ResultSet rs = stmt.executeQuery();
+                            if (rs.next()) {
+                                fullName = rs.getString("full_name");
+                                email = rs.getString("email");
+                                phone = rs.getString("phone");
+                                roleName = rs.getString("role_name");
+                            } else {
+                                throw new SQLException("User not found.");
+                            }
+                        }
+                    } catch (SQLException e) {
+                        request.setAttribute("error", "Error fetching profile: " + e.getMessage());
+                    } finally {
+                        if (conn != null) {
+                            try {
+                                conn.close();
+                            } catch (SQLException e) {
+                                System.err.println("Error closing connection: " + e.getMessage());
+                            }
+                        }
+                    }
+                %>
+
+                <% if (request.getAttribute("error") != null) { %>
+                    <div class="text-red-500 mb-4"><%= request.getAttribute("error") %></div>
+                <% } %>
+                <% if (request.getAttribute("message") != null) { %>
+                    <div class="text-green-500 mb-4"><%= request.getAttribute("message") %></div>
+                <% } %>
+
+                <!-- Read-Only View -->
+                <div id="profileView" class="space-y-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tên người dùng</p>
+                        <p class="text-lg text-gray-800 dark:text-white"><%= username %></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Họ và tên</p>
+                        <p class="text-lg text-gray-800 dark:text-white"><%= fullName %></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Email</p>
+                        <p class="text-lg text-gray-800 dark:text-white"><%= email != null ? email : "Chưa cập nhật" %></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Số điện thoại</p>
+                        <p class="text-lg text-gray-800 dark:text-white"><%= phone != null ? phone : "Chưa cập nhật" %></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Vai trò</p>
+                        <p class="text-lg text-gray-800 dark:text-white"><%= roleName %></p>
+                    </div>
+                </div>
+
+                <!-- Editable Form (Hidden by Default) -->
+                <form id="profileForm" action="user_profile" method="post" class="space-y-4 hidden">
+                    <div class="space-y-2">
+                        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tên người dùng</label>
+                        <input type="text" id="username" name="username" value="<%= username %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Họ và tên</label>
+                        <input type="text" id="fullName" name="fullName" value="<%= fullName != null ? fullName : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" value="<%= email != null ? email : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Số điện thoại</label>
+                        <input type="text" id="phone" name="phone" value="<%= phone != null ? phone : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Vai trò</label>
+                        <input type="text" id="role" name="role" value="<%= roleName %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg flex-1">Lưu thay đổi</button>
+                        <button type="button" id="cancelEditBtn" class="bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 px-6 py-3 rounded-lg flex-1 hover:bg-gray-300 dark:hover:bg-gray-500">Hủy</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Change Password Section -->
+            <div class="card bg-white dark:bg-gray-800 p-6">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Bảo mật tài khoản</h2>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Đổi mật khẩu</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Cập nhật mật khẩu để tăng cường bảo mật tài khoản của bạn.</p>
+                    </div>
+                    <a href="forgetPassword/Change_password.jsp" class="btn-primary text-white px-6 py-3 rounded-lg inline-flex items-center">
+                        <i class="fas fa-lock mr-2"></i>
+                        <span>Đổi mật khẩu</span>
+                    </a>
+                </div>
             </div>
         </div>
     </main>
@@ -321,6 +392,24 @@
             document.body.classList.add('dark-mode');
             toggleDarkMode.querySelector('i').classList.replace('fa-moon', 'fa-sun');
         }
+
+        // Toggle Edit Mode for Profile
+        const editProfileBtn = document.getElementById('editProfileBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const profileView = document.getElementById('profileView');
+        const profileForm = document.getElementById('profileForm');
+
+        editProfileBtn.addEventListener('click', () => {
+            profileView.classList.add('hidden');
+            profileForm.classList.remove('hidden');
+            editProfileBtn.classList.add('hidden');
+        });
+
+        cancelEditBtn.addEventListener('click', () => {
+            profileView.classList.remove('hidden');
+            profileForm.classList.add('hidden');
+            editProfileBtn.classList.remove('hidden');
+        });
     </script>
 </body>
 </html>
