@@ -234,14 +234,8 @@
             </div>
         </div>
         <nav class="space-y-2">
-            <a href="home.jsp" class="nav-item active flex items-center p-3 justify-between">
-                <div class="flex items-center">
-                    <i class="fas fa-tachometer-alt mr-3 w-6 text-center"></i>
-                    <span class="text-lg">Tổng quan</span>
-                </div>
-                <i class="fas fa-chevron-right ml-auto text-sm opacity-0.5"></i>
-            </a>
-            <a href="profile.jsp" class="nav-item flex items-center p-3 justify-between">
+            
+            <a href="User_profile.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-user mr-3 w-6 text-center"></i>
                     <span class="text-lg">Thông tin cá nhân</span>
@@ -285,7 +279,7 @@
             </a>
         </nav>
         <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
-            <a href="logout.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-sign-out-alt mr-3"></i>
                 <span class="text-lg">Đăng xuất</span>
             </a>

@@ -1,6 +1,7 @@
 package Controller;
 
 import Dal.DBContext;
+import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class Login_controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response); // Fixed file name to lowercase
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
     }
 
     @Override
@@ -36,10 +37,15 @@ public class Login_controller extends HttpServlet {
                 return;
             }
 
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            // Adjusted SQL to use UserRoles table for many-to-many relationship
+            String sql = "SELECT u.username, u.password_hash, r.role_name " +
+                         "FROM Users u " +
+                         "JOIN UserRoles ur ON u.user_id = ur.user_id " +
+                         "JOIN Roles r ON ur.role_id = r.role_id " +
+                         "WHERE u.username = ? AND u.password_hash = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, username);
-                stmt.setString(2, password);
+                stmt.setString(2, password); // Note: Should use hashed password comparison
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -47,7 +53,32 @@ public class Login_controller extends HttpServlet {
                     // Login successful
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
-                    response.sendRedirect("Home.jsp"); // Fixed file name to lowercase
+
+                    // Get the role name
+                    String roleName = rs.getString("role_name");
+
+                    // Redirect based on role
+                    String redirectPage = "Login.jsp"; // Default redirect
+                    switch (roleName.toLowerCase()) {
+                        case "admin":
+                            redirectPage = "admin_hehe.jsp";
+                            break;
+                        case "employee":
+                            redirectPage = "nhanviencongty_hehe.jsp";
+                            break;
+                        case "direction":
+                            redirectPage = "giamdoc_hehe.jsp";
+                            break;
+                        case "warehouse":
+                            redirectPage = "nhanvienkho_hehe.jsp";
+                            break;
+                        default:
+                            request.setAttribute("error", "Role not recognized. Contact administrator.");
+                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                            return;
+                    }
+
+                    response.sendRedirect(redirectPage);
                 } else {
                     // Invalid login credentials
                     request.setAttribute("error", "Invalid username or password.");

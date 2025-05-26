@@ -7,6 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="Dal.DBContext" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -88,7 +89,7 @@
     <%
         String username = (String) session.getAttribute("username");
         if (username == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("login.jsp");
             return;
         }
     %>
@@ -99,10 +100,8 @@
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Hồ sơ Người dùng</h2>
 
             <%
-                String fullName = "";
-                String email = "";
-                String phone = "";
-                String roleName = "";
+                String fullName = "", email = "", phone = "", address = "", status = "", roleName = "";
+                java.sql.Date dob = null;
 
                 Connection conn = null;
                 try {
@@ -111,9 +110,10 @@
                         throw new SQLException("Database connection failed.");
                     }
 
-                    String sql = "SELECT u.full_name, u.email, u.phone, r.role_name " +
-                                 "FROM users u " +
-                                 "JOIN roles r ON u.role_id = r.role_id " +
+                    String sql = "SELECT u.full_name, u.email, u.phone_number, u.address, u.date_of_birth, u.status, r.role_name " +
+                                 "FROM Users u " +
+                                 "JOIN UserRoles ur ON u.user_id = ur.user_id " +
+                                 "JOIN Roles r ON ur.role_id = r.role_id " +
                                  "WHERE u.username = ?";
                     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                         stmt.setString(1, username);
@@ -121,7 +121,10 @@
                         if (rs.next()) {
                             fullName = rs.getString("full_name");
                             email = rs.getString("email");
-                            phone = rs.getString("phone");
+                            phone = rs.getString("phone_number");
+                            address = rs.getString("address");
+                            dob = rs.getDate("date_of_birth");
+                            status = rs.getString("status");
                             roleName = rs.getString("role_name");
                         } else {
                             throw new SQLException("User not found.");
@@ -138,6 +141,7 @@
                         }
                     }
                 }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             %>
 
             <% if (request.getAttribute("error") != null) { %>
@@ -147,7 +151,7 @@
                 <div class="text-green-500 mb-4 text-center"><%= request.getAttribute("message") %></div>
             <% } %>
 
-            <form action="user_profile" method="post" class="space-y-4">
+            <form action="Update=profile_servlet" method="post" class="space-y-4">
                 <div class="space-y-2">
                     <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tên người dùng</label>
                     <input type="text" id="username" name="username" value="<%= username %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
@@ -169,8 +173,26 @@
                 </div>
 
                 <div class="space-y-2">
+                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Địa chỉ</label>
+                    <input type="text" id="address" name="address" value="<%= address != null ? address : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="dob" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ngày sinh</label>
+                    <input type="date" id="dob" name="dob" value="<%= dob != null ? sdf.format(dob) : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white">
+                </div>
+
+                <div class="space-y-2">
+                    <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Trạng thái</label>
+                    <select id="status" name="status" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white">
+                        <option value="active" <%= "active".equals(status) ? "selected" : "" %>>Active</option>
+                        <option value="inactive" <%= "inactive".equals(status) ? "selected" : "" %>>Inactive</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
                     <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Vai trò</label>
-                    <input type="text" id="role" name="role" value="<%= roleName %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
+                    <input type="text" id="role" name="role" value="<%= roleName != null ? roleName : "" %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
                 </div>
 
                 <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg w-full">Lưu thay đổi</button>
