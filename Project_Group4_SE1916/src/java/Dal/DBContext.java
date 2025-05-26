@@ -18,8 +18,19 @@ public class DBContext {
         }
     }
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+   public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            // Nạp driver (nếu dùng JDBC thuần)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Mở kết nối
+
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
     }
 
     // Để kiểm tra

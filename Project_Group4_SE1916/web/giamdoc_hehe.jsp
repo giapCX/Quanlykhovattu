@@ -240,7 +240,6 @@
                     <span class="text-lg">Danh mục vật tư</span>
                     <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
                 </a>
-
                 <a href="Suppliers.jsp" class="nav-item flex items-center p-3">
                     <i class="fas fa-truck mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh sách nhà cung cấp</span>
@@ -258,6 +257,10 @@
                 </a>
             </nav>
             <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
+                <a href="Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+                    <i class="fas fa-key mr-3"></i>
+                    <span class="text-lg">Đổi mật khẩu</span>
+                </a>
                 <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     <span class="text-lg">Đăng xuất</span>

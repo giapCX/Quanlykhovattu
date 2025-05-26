@@ -142,6 +142,16 @@
                     }
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                // Determine the homepage based on role
+                String homePage = "Home.jsp"; // Default fallback
+                if ("Direction".equalsIgnoreCase(roleName)) {
+                    homePage = "giamdoc_hehe.jsp";
+                } else if ("Employee".equalsIgnoreCase(roleName)) {
+                    homePage = "nhanviencongty_hehe.jsp";
+                } else if ("Warehouse".equalsIgnoreCase(roleName)) {
+                    homePage = "nhanvienkho_hehe.jsp";
+                }
             %>
 
             <% if (request.getAttribute("error") != null) { %>
@@ -151,7 +161,7 @@
                 <div class="text-green-500 mb-4 text-center"><%= request.getAttribute("message") %></div>
             <% } %>
 
-            <form action="Update=profile_servlet" method="post" class="space-y-4">
+            <form action="Update_profile_servlet" method="post" class="space-y-4">
                 <div class="space-y-2">
                     <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tên người dùng</label>
                     <input type="text" id="username" name="username" value="<%= username %>" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white" readonly>
@@ -199,7 +209,7 @@
             </form>
 
             <div class="mt-4 flex justify-center space-x-4">
-                <a href="Home.jsp" class="text-primary-600 dark:text-primary-400 hover:underline">Quay lại Trang chủ</a>
+                <a href="<%= homePage %>" class="text-primary-600 dark:text-primary-400 hover:underline">Quay lại Trang chủ</a>
                 <a href="logout" class="text-red-500 hover:underline">Đăng xuất</a>
             </div>
         </div>

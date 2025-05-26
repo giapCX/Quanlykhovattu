@@ -1,11 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ - Nhân viên | Hệ thống Quản lý Vật tư</title>
+    <title>Tổng quan Nhân viên Công ty - Hệ thống Quản lý Vật tư</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -22,16 +21,10 @@
                             50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd',
                             400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
                             800: '#5b21b6', 900: '#4c1d95'
-                        },
-                        accent: {
-                            500: '#f59e0b', 600: '#d97706'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif']
-                    },
-                    boxShadow: {
-                        'custom': '0 4px 20px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(59, 130, 246, 0.4)'
                     }
                 }
             }
@@ -47,11 +40,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, #f8fafc, #e0f2fe);
+            background-color: #f8fafc;
         }
 
         .sidebar {
-            background: linear-gradient(195deg, #1e40af, #3b82f6);
+            background: linear-gradient(195deg, #1e3a8a, #3b82f6);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(59, 130, 246, 0.4);
             transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
             transform: translateX(-100%);
@@ -73,32 +66,15 @@
         .nav-item {
             transition: all 0.2s ease;
             border-radius: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2));
-            transition: left 0.3s ease;
-        }
-
-        .nav-item:hover::before {
-            left: 100%;
         }
 
         .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            transform: translateX(5px) scale(1.02);
         }
 
         .nav-item.active {
-            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            background-color: rgba(255, 255, 255, 0.2);
             font-weight: 600;
         }
 
@@ -107,7 +83,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             border-radius: 1rem;
             border: 1px solid #e5e7eb;
-            background: linear-gradient(to bottom, #ffffff, #f8fafc);
         }
 
         .card:hover {
@@ -116,26 +91,8 @@
         }
 
         .btn-primary {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            background: linear-gradient(to right, #3b82f6, #6366f1);
             transition: all 0.3s ease;
-            border-radius: 0.75rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
-            transition: left 0.3s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
         }
 
         .btn-primary:hover {
@@ -147,11 +104,10 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             border: 1px solid #e5e7eb;
-            background: linear-gradient(to bottom, #ffffff, #f8fafc);
         }
 
         .table th {
-            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            background-color: #3b82f6;
             color: white;
             font-weight: 600;
             text-transform: uppercase;
@@ -173,42 +129,32 @@
             border-radius: 0.5rem;
             font-size: 0.75rem;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
 
         .badge-success {
-            background: linear-gradient(to right, #10b981, #34d399);
-            color: white;
+            background-color: #d1fae5;
+            color: #065f46;
         }
 
         .badge-warning {
-            background: linear-gradient(to right, #f59e0b, #fbbf24);
-            color: white;
+            background-color: #fef3c7;
+            color: #92400e;
         }
 
         .badge-danger {
-            background: linear-gradient(to right, #ef4444, #f87171);
-            color: white;
-        }
-
-        .search-input {
-            transition: all 0.3s ease;
-            border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .search-input:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            background-color: #fee2e2;
+            color: #991b1b;
         }
 
         .dark-mode {
-            background: linear-gradient(to bottom, #1a202c, #2d3748);
+            background-color: #1a202c;
             color: #e2e8f0;
         }
 
         .dark-mode .card,
         .dark-mode .table-container {
-            background: linear-gradient(to bottom, #2d3748, #4a5568);
+            background-color: #2d3748;
+            color: #e2e8f0;
             border-color: #4a5568;
         }
 
@@ -238,6 +184,16 @@
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
 
+        th.asc::after {
+            content: ' ↑';
+            font-size: 0.75rem;
+        }
+
+        th.desc::after {
+            content: ' ↓';
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -247,7 +203,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen font-sans antialiased">
+<body class="bg-gray-50 min-h-screen font-sans antialiased">
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar w-72 text-white p-6 fixed h-full z-50 hidden">
         <div class="flex items-center mb-8">
@@ -259,24 +215,28 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="mb-6 px-2">
-            <div class="relative">
-                <input type="text" placeholder="Tìm kiếm..." 
-                       class="w-full bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-70 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 search-input">
-                <i class="fas fa-search absolute left-3 top-2.5 text-white opacity-70"></i>
-            </div>
-        </div>
         <nav class="space-y-2">
-            <a href="material_list.jsp" class="nav-item flex items-center p-3">
-                <i class="fas fa-list mr-3 w-6 text-center"></i>
-                <span class="text-lg">Danh mục vật tư</span>
-            </a>
             <a href="User_profile.jsp" class="nav-item flex items-center p-3">
                 <i class="fas fa-user mr-3 w-6 text-center"></i>
                 <span class="text-lg">Thông tin cá nhân</span>
+                <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
+            </a>
+            <a href="create_request.jsp" class="nav-item flex items-center p-3">
+                <i class="fas fa-file-alt mr-3 w-6 text-center"></i>
+                <span class="text-lg">Tạo yêu cầu</span>
+                <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
+            </a>
+            <a href="request_history.jsp" class="nav-item flex items-center p-3">
+                <i class="fas fa-history mr-3 w-6 text-center"></i>
+                <span class="text-lg">Lịch sử yêu cầu</span>
+                <span class="ml-auto bg-red-500 text-white text-sm px-2 py-1 rounded-full">2</span>
             </a>
         </nav>
         <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
+            <a href="Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+                <i class="fas fa-key mr-3"></i>
+                <span class="text-lg">Đổi mật khẩu</span>
+            </a>
             <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-sign-out-alt mr-3"></i>
                 <span class="text-lg">Đăng xuất</span>
@@ -293,19 +253,19 @@
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
                 <div>
-                    <h1 class="text-4xl font-bold text-gray-800 dark:text-white">Tổng quan</h1>
-                    <p class="text-base text-gray-600 dark:text-gray-300 mt-2">Quản lý vật tư và thông tin cá nhân</p>
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Tổng quan Nhân viên</h1>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Quản lý yêu cầu vật tư</p>
                 </div>
             </div>
             <div class="flex items-center space-x-6">
                 <div class="relative">
                     <i class="fas fa-bell text-gray-500 hover:text-primary-600 cursor-pointer text-xl"></i>
-                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">2</span>
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
                 </div>
                 <div class="flex items-center">
-                    <img src="https://ui-avatars.com/api/?name=Nguyen+Van+A&background=3b82f6&color=fff" 
-                         alt="Người dùng" class="w-10 h-10 rounded-full mr-3 border-2 border-primary-500">
-                    <span class="font-medium text-gray-700 dark:text-white text-lg">Nguyễn Văn A</span>
+                    <img src="https://ui-avatars.com/api/?name=Nhân+viên&background=3b82f6&color=fff" 
+                         alt="Nhân viên" class="w-10 h-10 rounded-full mr-3">
+                    <span class="font-medium text-gray-700 dark:text-white text-lg">Nhân viên</span>
                 </div>
                 <button id="toggleDarkMode" class="bg-gray-200 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600">
                     <i class="fas fa-moon text-gray-700 dark:text-yellow-300 text-xl"></i>
@@ -313,66 +273,66 @@
             </div>
         </header>
 
-        <!-- Request Stats -->
+        <!-- Dashboard Stats -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             <div class="card bg-white dark:bg-gray-800 animate-fadeInUp">
                 <div class="p-6 flex items-start justify-between">
                     <div>
-                        <p class="text-base font-medium text-gray-500 dark:text-gray-400">Yêu cầu chờ duyệt</p>
-                        <h3 class="text-4xl font-bold mt-2 text-gray-800 dark:text-white">2</h3>
-                        <p class="text-base text-yellow-500 mt-3"><i class="fas fa-clock mr-1"></i>Đang chờ xử lý</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Yêu cầu đã gửi</p>
+                        <h3 class="text-3xl font-bold mt-2 text-gray-800 dark:text-white">10</h3>
+                        <p class="text-sm text-green-500 mt-3"><i class="fas fa-arrow-up mr-1"></i>2 yêu cầu mới</p>
                     </div>
-                    <div class="p-4 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 animate-pulse">
-                        <i class="fas fa-clock text-2xl"></i>
+                    <div class="p-4 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300">
+                        <i class="fas fa-file-alt text-2xl"></i>
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-base font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
+                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem lịch sử</a>
                 </div>
             </div>
             <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-100">
                 <div class="p-6 flex items-start justify-between">
                     <div>
-                        <p class="text-base font-medium text-gray-500 dark:text-gray-400">Yêu cầu đã duyệt</p>
-                        <h3 class="text-4xl font-bold mt-2 text-gray-800 dark:text-white">5</h3>
-                        <p class="text-base text-green-500 mt-3"><i class="fas fa-check-circle mr-1"></i>Hoàn tất</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Yêu cầu chờ duyệt</p>
+                        <h3 class="text-3xl font-bold mt-2 text-gray-800 dark:text-white">3</h3>
+                        <p class="text-sm text-yellow-500 mt-3"><i class="fas fa-clock mr-1"></i>Đang chờ xử lý</p>
                     </div>
-                    <div class="p-4 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 animate-pulse">
-                        <i class="fas fa-check-circle text-2xl"></i>
+                    <div class="p-4 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300">
+                        <i class="fas fa-clipboard-list text-2xl"></i>
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-base font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
+                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
                 </div>
             </div>
             <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-200">
                 <div class="p-6 flex items-start justify-between">
                     <div>
-                        <p class="text-base font-medium text-gray-500 dark:text-gray-400">Yêu cầu bị từ chối</p>
-                        <h3 class="text-4xl font-bold mt-2 text-gray-800 dark:text-white">1</h3>
-                        <p class="text-base text-red-500 mt-3"><i class="fas fa-times-circle mr-1"></i>Cần kiểm tra</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Yêu cầu được duyệt</p>
+                        <h3 class="text-3xl font-bold mt-2 text-gray-800 dark:text-white">7</h3>
+                        <p class="text-sm text-blue-500 mt-3"><i class="fas fa-check-circle mr-1"></i>Đã hoàn thành</p>
                     </div>
-                    <div class="p-4 rounded-full bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 animate-pulse">
-                        <i class="fas fa-times-circle text-2xl"></i>
+                    <div class="p-4 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300">
+                        <i class="fas fa-check text-2xl"></i>
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-base font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
+                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
                 </div>
             </div>
         </div>
 
         <!-- Quick Actions -->
-        <div class="mb-8 grid grid-cols-2 sm:grid-cols-2 gap-6">
-            <button onclick="showToast('Đang chuyển đến trang yêu cầu xuất kho...')" 
-                    class="btn-primary text-white px-6 py-4 flex flex-col items-center justify-center hover:shadow-lg transition-all">
-                <i class="fas fa-arrow-up text-3xl mb-3"></i>
-                <span class="text-lg font-semibold">Yêu cầu xuất kho</span>
+        <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <button onclick="window.location.href='create_request.jsp'" 
+                    class="btn-primary text-white px-6 py-4 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all">
+                <i class="fas fa-file-alt text-3xl mb-3"></i>
+                <span class="text-lg">Tạo yêu cầu mới</span>
             </button>
-            <button onclick="showToast('Đang chuyển đến trang đề nghị mua vật tư...')" 
-                    class="btn-primary text-white px-6 py-4 flex flex-col items-center justify-center hover:shadow-lg transition-all">
-                <i class="fas fa-shopping-cart text-3xl mb-3"></i>
-                <span class="text-lg font-semibold">Đề nghị mua vật tư</span>
+            <button onclick="window.location.href='request_history.jsp'" 
+                    class="btn-primary text-white px-6 py-4 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all">
+                <i class="fas fa-history text-3xl mb-3"></i>
+                <span class="text-lg">Xem lịch sử yêu cầu</span>
             </button>
         </div>
 
@@ -380,63 +340,39 @@
         <div class="table-container bg-white dark:bg-gray-800">
             <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Lịch sử yêu cầu</h2>
-                    <p class="text-base text-gray-600 dark:text-gray-300">Danh sách các yêu cầu đã gửi</p>
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Lịch sử yêu cầu</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Danh sách các yêu cầu đã gửi</p>
                 </div>
-                <a href="request_history.jsp" class="text-base font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
+                <a href="request_history.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full table-auto">
                     <thead>
                         <tr class="bg-primary-600 text-white">
-                            <th class="p-4 text-left">Mã yêu cầu</th>
+                            <th class="p-4 text-left">Thời gian</th>
                             <th class="p-4 text-left">Loại yêu cầu</th>
-                            <th class="p-4 text-left">Tên vật tư</th>
-                            <th class="p-4 text-left">Số lượng</th>
-                            <th class="p-4 text-left">Ngày gửi</th>
+                            <th class="p-4 text-left">Nội dung</th>
                             <th class="p-4 text-left">Trạng thái</th>
-                            <th class="p-4 text-left">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                            <td class="p-4 font-medium text-base">YC001</td>
-                            <td class="p-4 text-base">Xuất kho</td>
-                            <td class="p-4 text-base">Bàn gỗ cao cấp</td>
-                            <td class="p-4 text-base">5</td>
-                            <td class="p-4 text-base">23/05/2025</td>
+                            <td class="p-4">10:30 23/05/2025</td>
+                            <td class="p-4">Yêu cầu xuất kho</td>
+                            <td class="p-4">10 bàn gỗ cao cấp</td>
                             <td class="p-4"><span class="badge badge-warning">Chờ duyệt</span></td>
-                            <td class="p-4">
-                                <button onclick="showToast('Đang in phiếu yêu cầu...')" class="text-primary-600 hover:text-primary-800">
-                                    <i class="fas fa-print"></i>
-                                </button>
-                            </td>
                         </tr>
                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                            <td class="p-4 font-medium text-base">YC002</td>
-                            <td class="p-4 text-base">Mua vật tư</td>
-                            <td class="p-4 text-base">Ghế xoay văn phòng</td>
-                            <td class="p-4 text-base">3</td>
-                            <td class="p-4 text-base">22/05/2025</td>
+                            <td class="p-4">09:15 23/05/2025</td>
+                            <td class="p-4">Đề nghị mua vật tư</td>
+                            <td class="p-4">5 màn hình LCD 24"</td>
                             <td class="p-4"><span class="badge badge-success">Đã duyệt</span></td>
-                            <td class="p-4">
-                                <button onclick="showToast('Đang in phiếu đề nghị...')" class="text-primary-600 hover:text-primary-800">
-                                    <i class="fas fa-print"></i>
-                                </button>
-                            </td>
                         </tr>
                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                            <td class="p-4 font-medium text-base">YC003</td>
-                            <td class="p-4 text-base">Xuất kho</td>
-                            <td class="p-4 text-base">Màn hình LCD 24"</td>
-                            <td class="p-4 text-base">2</td>
-                            <td class="p-4 text-base">21/05/2025</td>
-                            <td class="p-4"><span class="badge badge-danger">Không duyệt</span></td>
-                            <td class="p-4">
-                                <button onclick="showToast('Đang xem lý do...')" class="text-primary-600 hover:text-primary-800">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
+                            <td class="p-4">08:45 23/05/2025</td>
+                            <td class="p-4">Đề nghị sửa chữa</td>
+                            <td class="p-4">3 bàn phím cơ hỏng</td>
+                            <td class="p-4"><span class="badge badge-danger">Bị từ chối</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -445,10 +381,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 dark:bg-gray-800 text-center p-4 mt-8 border-t border-gray-200 dark:border-gray-700 transition-all duration-300">
-        <p class="text-xs text-gray-600 dark:text-gray-300">Hệ thống Quản lý Vật tư - Phiên bản 2.0 © 2025 | 
-            <a href="mailto:support@company.com" class="text-primary-600 dark:text-primary-400 hover:underline text-xs">Liên hệ hỗ trợ</a>
-        </p>
+    <footer class="bg-gray-100 dark:bg-gray-800 text-center p-6 mt-8 border-t border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Hệ thống Quản lý Vật tư - Phiên bản 2.0 © 2025 | <a href="mailto:support@company.com" class="text-primary-600 dark:text-primary-400 hover:underline text-base">Liên hệ hỗ trợ</a></p>
     </footer>
 
     <!-- JavaScript -->
@@ -486,16 +420,16 @@
         }
 
         // Toast Notification
-        function showToast(message) {
+        function showToast(message, bgColor = "#3b82f6") {
             Toastify({
                 text: message,
                 duration: 3000,
                 gravity: "top",
                 position: "right",
-                backgroundColor: "linear-gradient(to right, #3b82f6, #8b5cf6)",
+                backgroundColor: bgColor,
                 stopOnFocus: true,
                 className: "rounded-lg shadow-lg",
-                style: { borderRadius: "0.5rem", fontWeight: "500" }
+                style: {borderRadius: "0.5rem"}
             }).showToast();
         }
 
@@ -506,18 +440,19 @@
                 const tbody = table.querySelector('tbody');
                 const rows = Array.from(tbody.querySelectorAll('tr'));
                 const columnIndex = th.cellIndex;
-                const isNumeric = columnIndex === 3; // Số lượng
+                const isNumeric = columnIndex === 0; // Only "Thời gian" is sortable as text for simplicity
                 const isAsc = th.classList.toggle('asc');
                 th.classList.toggle('desc', !isAsc);
                 table.querySelectorAll('th').forEach(header => {
-                    if (header !== th) header.classList.remove('asc', 'desc');
+                    if (header !== th)
+                        header.classList.remove('asc', 'desc');
                 });
                 rows.sort((a, b) => {
                     let aValue = a.cells[columnIndex].textContent;
                     let bValue = b.cells[columnIndex].textContent;
                     if (isNumeric) {
-                        aValue = parseFloat(aValue) || 0;
-                        bValue = parseFloat(bValue) || 0;
+                        aValue = new Date(aValue).getTime();
+                        bValue = new Date(bValue).getTime();
                         return isAsc ? aValue - bValue : bValue - aValue;
                     }
                     return isAsc ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
