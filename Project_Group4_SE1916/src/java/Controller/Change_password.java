@@ -5,7 +5,7 @@
 
 package Controller;
 
-import DAO.AccountDAO;
+import DAO.Accountdao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import Model.Account;
 
 
-public class ChangePassword extends HttpServlet {
+public class Change_password extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -29,16 +29,16 @@ public class ChangePassword extends HttpServlet {
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         if (!newPass.equals(newCfPass)) {
             request.setAttribute("mess2", "Mật khẩu không khớp. Vui lòng nhập lại!");
-            request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
+            request.getRequestDispatcher("./Change_password.jsp").forward(request, response);
         } else {
             if (newPass.matches(passwordRegex)) {
-                AccountDAO accdb = new AccountDAO();
+                Accountdao accdb = new Accountdao();
                 accdb.updatePassword(username, newPass);
-                response.sendRedirect("./changePasswordSuccess.jsp");
+                response.sendRedirect("./Change_password_success.jsp");
                 
             } else {
                 request.setAttribute("mess1", "Mật khẩu phải bao gồm 8 ký tự trở lên và phải bao gồm chữ hoa, chữ thường, số từ 0 đến 9 và bao gồm ký tự đặc biệt");
-                request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
+                request.getRequestDispatcher("./Change_password.jsp").forward(request, response);
             }
 
         }

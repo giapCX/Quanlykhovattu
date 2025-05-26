@@ -24,7 +24,7 @@ import javax.mail.internet.MimeMessage;
 import Model.User;
 
 
-public class SendMail extends HttpServlet {
+public class Send_mail extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class SendMail extends HttpServlet {
 
             try {
                 sendEmail(recipient, message);
-                req.getRequestDispatcher("./confirmEmail.jsp").forward(req, resp);
+                req.getRequestDispatcher("./Confirm_email.jsp").forward(req, resp);
             } catch (MessagingException e) {
                 setErrorAndForward(req, resp, "Chúng tôi không thể gửi mã code đến email của bạn.");
             }
@@ -88,7 +88,7 @@ public class SendMail extends HttpServlet {
     private void setErrorAndForward(HttpServletRequest req, HttpServletResponse resp, String message)
     throws ServletException, IOException {
         req.setAttribute("mess", message);
-        req.getRequestDispatcher("./forgetPassword.jsp").forward(req, resp);
+        req.getRequestDispatcher("./Forget_password.jsp").forward(req, resp);
     }
 
     public static String getRandomNumberString() {

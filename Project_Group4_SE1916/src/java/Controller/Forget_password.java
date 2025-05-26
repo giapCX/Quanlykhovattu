@@ -5,7 +5,7 @@
 
 package Controller;
 
-import DAO.AccountDAO;
+import DAO.Accountdao;
 import DAO.UserDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -29,12 +29,12 @@ import Model.Account;
 import Model.User;
 
 @WebServlet("/forgetPassword/forget")
-public class ForgetPassword extends HttpServlet {
+public class Forget_password extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("./forgetPassword.jsp").forward(request, response);
+        request.getRequestDispatcher("./Forget_password.jsp").forward(request, response);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ForgetPassword extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../forgetPassword/confirmEmail.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../forgetPassword/Confirm_email.jsp");
         request.setAttribute("message", "Mật khẩu mới đã được gửi đến bạn, vui lòng kiểm tra email.");
         session.setAttribute("passGen", newPassword);
          session.setAttribute("accountForgetPass", account);
@@ -88,7 +88,7 @@ public class ForgetPassword extends HttpServlet {
     }
 
     private Account getAccountByUsername(String username) {
-        AccountDAO accountDB = new AccountDAO();
+        Accountdao accountDB = new Accountdao();
         try {
             return accountDB.checkAccountExisted(username);
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class ForgetPassword extends HttpServlet {
     }
 
     private void updatePassword(String username, String newPassword) {
-        AccountDAO accountDB = new AccountDAO();
+        Accountdao accountDB = new Accountdao();
         accountDB.updatePassword(username, newPassword);
     }
 
@@ -150,7 +150,7 @@ public class ForgetPassword extends HttpServlet {
     private void setErrorAndForward(HttpServletRequest request, HttpServletResponse response, String message)
             throws ServletException, IOException {
         request.setAttribute("mess", message);
-        request.getRequestDispatcher("./forgetPassword.jsp").forward(request, response);
+        request.getRequestDispatcher("./Forget_password.jsp").forward(request, response);
     }
 
     private String generateRandomPassword(int length) {

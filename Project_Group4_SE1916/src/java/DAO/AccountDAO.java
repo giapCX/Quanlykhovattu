@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author ASUS
  */
-public class AccountDAO extends DBContext {
+public class Accountdao extends DBContext {
     
     protected Connection connection;
     public void updatePassword(String username, String newpassword) {
@@ -31,7 +31,7 @@ public class AccountDAO extends DBContext {
             stm.setString(2, username);
             stm.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -69,7 +69,7 @@ public class AccountDAO extends DBContext {
                 return premium;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -169,7 +169,7 @@ public class AccountDAO extends DBContext {
             }
             return account;
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -178,7 +178,7 @@ public class AccountDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        AccountDAO dBContext = new AccountDAO();
+        Accountdao dBContext = new Accountdao();
         System.out.println(dBContext.getNumberOfPremiumUser());
     }
 

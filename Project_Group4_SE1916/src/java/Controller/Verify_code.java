@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-public class VerifyCode extends HttpServlet {
+public class Verify_code extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,9 +33,9 @@ public class VerifyCode extends HttpServlet {
         String generatedCode = (String) session.getAttribute("passGen");
         
         if (verifyCode.equals(generatedCode)) {
-            req.getRequestDispatcher("../forgetPassword/verifySuccessful.jsp").forward(req, resp);
+            req.getRequestDispatcher("../forgetPassword/Verify_successful.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("../forgetPassword/verifyFail.jsp").forward(req, resp);
+            req.getRequestDispatcher("../forgetPassword/Verify_fail.jsp").forward(req, resp);
         }
     }
 }

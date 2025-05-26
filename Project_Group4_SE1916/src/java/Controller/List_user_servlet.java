@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/user")
-public class ListUserServlet extends HttpServlet {
+public class List_user_servlet extends HttpServlet {
     private Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306//quan_ly_kho_vat_tu"; // sửa theo db bạn
         String user = "root";
@@ -30,7 +30,7 @@ public class ListUserServlet extends HttpServlet {
             List<User> users = userDAO.getAllUsers();
 
             request.setAttribute("data", users);
-            request.getRequestDispatcher("/user-list.jsp").forward(request, response);
+            request.getRequestDispatcher("/List_user.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException(e);
         }

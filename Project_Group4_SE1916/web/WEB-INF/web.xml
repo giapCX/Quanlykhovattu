@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controller.LoginController</servlet-class>
+        <servlet-name>Login_controller</servlet-name>
+        <servlet-class>Controller.Login_controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListUserServlet</servlet-name>
-        <servlet-class>Controller.ListUserServlet</servlet-class>
+        <servlet-name>List_user_servlet</servlet-name>
+        <servlet-class>Controller.List_user_servlet</servlet-class>
+    </servlet>
+    
+   
+    <servlet>
+        <servlet-name>Change_password</servlet-name>
+        <servlet-class>Controller.Change_password</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ResetPassword_Controller</servlet-name>
-        <servlet-class>Controller.ResetPassword_Controller</servlet-class>
+        <servlet-name>Send_mail</servlet-name>
+        <servlet-class>Controller.Send_mail</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminApproveServlet</servlet-name>
-        <servlet-class>Controller.AdminApproveServlet</servlet-class>
+        <servlet-name>Forget_password</servlet-name>
+        <servlet-class>Controller.Forget_password</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangePassword</servlet-name>
-        <servlet-class>Controller.ChangePassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SendMail</servlet-name>
-        <servlet-class>Controller.SendMail</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ForgetPassword</servlet-name>
-        <servlet-class>Controller.ForgetPassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>VerifyCode</servlet-name>
-        <servlet-class>Controller.VerifyCode</servlet-class>
+        <servlet-name>Verify_code</servlet-name>
+        <servlet-class>Controller.Verify_code</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
+        <servlet-name>Login_controller</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListUserServlet</servlet-name>
+        <servlet-name>List_user_servlet</servlet-name>
         <url-pattern>/listuser</url-pattern>
     </servlet-mapping>
+    
+   
     <servlet-mapping>
-        <servlet-name>ResetPassword_Controller</servlet-name>
-        <url-pattern>/reset_password</url-pattern>
+        <servlet-name>Change_password</servlet-name>
+        <url-pattern>/change_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminApproveServlet</servlet-name>
-        <url-pattern>/admin_approve</url-pattern>
+        <servlet-name>Send_mail</servlet-name>
+        <url-pattern>/send_mail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ChangePassword</servlet-name>
-        <url-pattern>/ChangePassword</url-pattern>
+        <servlet-name>Forget_password</servlet-name>
+        <url-pattern>/forget_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SendMail</servlet-name>
-        <url-pattern>/sendmail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ForgetPassword</servlet-name>
-        <url-pattern>/forgetpassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VerifyCode</servlet-name>
-        <url-pattern>/verifycode</url-pattern>
+        <servlet-name>Verify_code</servlet-name>
+        <url-pattern>/verify_code</url-pattern>
     </servlet-mapping>
 </web-app>
