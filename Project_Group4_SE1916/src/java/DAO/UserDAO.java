@@ -9,10 +9,16 @@ import Model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserDAO {
     private Connection conn;
 
+    public UserDAO() {
+    }
+
+    
     public UserDAO(Connection conn) {
         this.conn = conn;
     }
@@ -44,5 +50,29 @@ public class UserDAO {
             }
         }
         return users;
+    }
+    
+    public User getUserByUsername(String username) {
+        User user = new User();
+        String sql = "SELECT * FROM [User] WHERE username = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                user.setUserId(rs.getInt("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setFullName(rs.getString("full_name"));
+                user.setEmail(rs.getString("email"));
+                user.setPhone(rs.getString("phone"));
+                user.setStatus(rs.getString("status"));
+                user.setUsername(username);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

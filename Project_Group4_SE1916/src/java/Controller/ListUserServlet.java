@@ -17,9 +17,9 @@ import java.util.List;
 @WebServlet("/user")
 public class ListUserServlet extends HttpServlet {
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/your_database"; // sửa theo db bạn
+        String url = "jdbc:mysql://localhost:3306//quan_ly_kho_vat_tu"; // sửa theo db bạn
         String user = "root";
-        String pass = "your_password";
+        String pass = "123456";
         return DriverManager.getConnection(url, user, pass);
     }
 
