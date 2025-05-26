@@ -6,7 +6,7 @@
 package Controller;
 
 import DAO.Accountdao;
-import DAO.UserDAO;
+import DAO.Userdao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -98,7 +98,7 @@ public class Forget_password extends HttpServlet {
     }
 
     private User getUserByUsername(String username) {
-        UserDAO userDB = new UserDAO();
+        Userdao userDB = new Userdao();
         try {
             return userDB.getUserByUsername(username);
         } catch (Exception e) {

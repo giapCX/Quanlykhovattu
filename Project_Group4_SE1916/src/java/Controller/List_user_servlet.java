@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.UserDAO;
+import DAO.Userdao;
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ public class List_user_servlet extends HttpServlet {
         }
 
         try (Connection conn = getConnection()) {
-            UserDAO userDAO = new UserDAO(conn);
+            Userdao userDAO = new Userdao(conn);
             List<User> users = userDAO.getAllUsers();
 
             request.setAttribute("data", users);

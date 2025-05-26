@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDAO {
+public class Userdao {
     private Connection conn;
 
-    public UserDAO() {
+    public Userdao() {
     }
 
     
-    public UserDAO(Connection conn) {
+    public Userdao(Connection conn) {
         this.conn = conn;
     }
 
@@ -71,7 +71,7 @@ public class UserDAO {
                 return user;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Userdao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
