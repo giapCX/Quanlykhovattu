@@ -30,64 +30,64 @@ public class List_user_servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Session Check
-//        String username = (String) request.getSession().getAttribute("username");
-//        if (username == null) {
-//            response.sendRedirect("Login.jsp");
-//            return;
-//        }
+        String username = (String) request.getSession().getAttribute("username");
+        if (username == null) {
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            return;
+        }
         String search = request.getParameter("search");
-String roleIdParam = request.getParameter("roleId");
-String status = request.getParameter("status");
-String pageParam = request.getParameter("page");
+        String roleIdParam = request.getParameter("roleId");
+        String status = request.getParameter("status");
+        String pageParam = request.getParameter("page");
 
-int currentPage = 1;
-int recordsPerPage = 8;
+        int currentPage = 1;
+        int recordsPerPage = 8;
 
-if (pageParam != null) {
-    try {
-        currentPage = Integer.parseInt(pageParam);
-    } catch (NumberFormatException e) {
-        currentPage = 1;
-    }
-}
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
 
-Integer roleId = null;
-if (roleIdParam != null && !roleIdParam.isEmpty()) {
-    try {
-        roleId = Integer.parseInt(roleIdParam);
-    } catch (NumberFormatException e) {
-        roleId = null;
-    }
-}
+        Integer roleId = null;
+        if (roleIdParam != null && !roleIdParam.isEmpty()) {
+            try {
+                roleId = Integer.parseInt(roleIdParam);
+            } catch (NumberFormatException e) {
+                roleId = null;
+            }
+        }
 
-try (Connection conn = DBContext.getConnection()) {
-    Userdao userDAO = new Userdao(conn);
-    Roledao roleDAO = new Roledao(conn);
+        try (Connection conn = DBContext.getConnection()) {
+            Userdao userDAO = new Userdao(conn);
+            Roledao roleDAO = new Roledao(conn);
 
-    // Tổng số user theo search, role, status filter
-    int totalRecords = userDAO.countUsersByNameRoleStatus(search, roleId, status);
+            // Tổng số user theo search, role, status filter
+            int totalRecords = userDAO.countUsersByNameRoleStatus(search, roleId, status);
 
-    // Tính offset để phân trang
-    int offset = (currentPage - 1) * recordsPerPage;
+            // Tính offset để phân trang
+            int offset = (currentPage - 1) * recordsPerPage;
 
-    // Lấy danh sách user theo điều kiện + phân trang
-   List<User> users = userDAO.searchUsersByNameRoleStatusWithPaging(search, roleId, status, offset, recordsPerPage);
-    List<Role> roles = roleDAO.getAllRoles();
+            // Lấy danh sách user theo điều kiện + phân trang
+            List<User> users = userDAO.searchUsersByNameRoleStatusWithPaging(search, roleId, status, offset, recordsPerPage);
+            List<Role> roles = roleDAO.getAllRoles();
 
-    int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+            int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
 
-    request.setAttribute("data", users);
-    request.setAttribute("roles", roles);
-    request.setAttribute("search", search);
-    request.setAttribute("roleId", roleId);
-    request.setAttribute("status", status);
-    request.setAttribute("currentPage", currentPage);
-    request.setAttribute("totalPages", totalPages);
+            request.setAttribute("data", users);
+            request.setAttribute("roles", roles);
+            request.setAttribute("search", search);
+            request.setAttribute("roleId", roleId);
+            request.setAttribute("status", status);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPages", totalPages);
 
-    request.getRequestDispatcher("List_user.jsp").forward(request, response);
-} catch (Exception e) {
-    throw new ServletException(e);
-}
+            request.getRequestDispatcher("List_user.jsp").forward(request, response);
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
 
     }
 }
