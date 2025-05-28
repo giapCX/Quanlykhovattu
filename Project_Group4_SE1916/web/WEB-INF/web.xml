@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
-        <servlet-name>Login_controller</servlet-name>
-        <servlet-class>Controller.Login_controller</servlet-class>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>List_user_servlet</servlet-name>
-        <servlet-class>Controller.List_user_servlet</servlet-class>
+        <servlet-name>ListUserServlet</servlet-name>
+        <servlet-class>controller.ListUserServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Change_password</servlet-name>
-        <servlet-class>Controller.Change_password</servlet-class>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>controller.ChangePassword</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Send_mail</servlet-name>
-        <servlet-class>Controller.Send_mail</servlet-class>
+        <servlet-name>SendMail</servlet-name>
+        <servlet-class>controller.SendMail</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Forget_password</servlet-name>
-        <servlet-class>Controller.Forget_password</servlet-class>
+        <servlet-name>ForgetPassword</servlet-name>
+        <servlet-class>controller.ForgetPassword</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Verify_code</servlet-name>
-        <servlet-class>Controller.Verify_code</servlet-class>
+        <servlet-name>VerifyCode</servlet-name>
+        <servlet-class>controller.VerifyCode</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Logout_controller</servlet-name>
-        <servlet-class>Controller.Logout_controller</servlet-class>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>User_profile_controller</servlet-name>
-        <servlet-class>Controller.User_profile_controller</servlet-class>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>controller.UserProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Edit_user_servlet</servlet-name>
-        <servlet-class>Controller.Edit_user_servlet</servlet-class>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>controller.EditUserServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Add_user_servlet</servlet-name>
-        <servlet-class>Controller.Add_user_servlet</servlet-class>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>controller.AddUserServlet</servlet-class>
     </servlet>
 <servlet-mapping>
-        <servlet-name>Edit_user_servlet</servlet-name>
+        <servlet-name>EditUserServlet</servlet-name>
         <url-pattern>/edituser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Add_user_servlet</servlet-name>
+        <servlet-name>AddUserServlet</servlet-name>
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Login_controller</servlet-name>
+        <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>List_user_servlet</servlet-name>
+        <servlet-name>ListUserServlet</servlet-name>
         <url-pattern>/listuser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Change_password</servlet-name>
+        <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/forgetPassword/change_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Send_mail</servlet-name>
+        <servlet-name>SendMail</servlet-name>
         <url-pattern>/send_mail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Forget_password</servlet-name>
-        <url-pattern>/forget_password</url-pattern>
+        <servlet-name>ForgetPassword</servlet-name>
+        <url-pattern>/forgetPassword/forget_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Verify_code</servlet-name>
+        <servlet-name>VerifyCode</servlet-name>
         <url-pattern>/verify_code</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Logout_controller</servlet-name>
+        <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>User_profile_controller</servlet-name>
+        <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/user_profile</url-pattern>
     </servlet-mapping>
     <jsp-config>

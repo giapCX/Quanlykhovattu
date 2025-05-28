@@ -68,7 +68,7 @@
 
         <!-- Thêm nút Forget Password -->
         <div class="mt-3 text-center">
-            <a href="forgetPassword/Forget_password.jsp" class="btn btn-link">Forget Password</a>
+            <a href="forgetPassword/forgetPassword.jsp" class="btn btn-link">Forget Password</a>
         </div>
     </div>
 

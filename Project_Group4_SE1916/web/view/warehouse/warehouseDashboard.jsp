@@ -234,42 +234,42 @@
             </div>
         </div>
         <nav class="space-y-2">
-            <a href="User_profile.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/userProfile.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-user mr-3 w-6 text-center"></i>
                     <span class="text-lg">Thông tin cá nhân</span>
                 </div>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-0.5"></i>
             </a>
-            <a href="inventory.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/inventory.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-warehouse mr-3 w-6 text-center"></i>
                     <span class="text-lg">Quản lý vật tư</span>
                 </div>
                 <span class="ml-auto bg-white bg-opacity-20 text-sm px-2 py-1 rounded">5</span>
             </a>
-            <a href="categories.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/categories.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-box-open mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh mục vật tư</span>
                 </div>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-0.5"></i>
             </a>
-            <a href="suppliers.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/suppliers.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-truck mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh sách nhà cung cấp</span>
                 </div>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-0.5"></i>
             </a>
-            <a href="requests.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/requests.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-clipboard-list mr-3 w-6 text-center"></i>
                     <span class="text-lg">Yêu cầu xuất/mua/sửa</span>
                 </div>
                 <span class="ml-auto bg-red-500 text-white text-sm px-2 py-1 rounded-full">3</span>
             </a>
-            <a href="reports.jsp" class="nav-item flex items-center p-3 justify-between">
+            <a href="${pageContext.request.contextPath}/reports.jsp" class="nav-item flex items-center p-3 justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-chart-bar mr-3 w-6 text-center"></i>
                     <span class="text-lg">Thống kê & Báo cáo</span>
@@ -278,11 +278,11 @@
             </a>
         </nav>
         <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
-            <a href="forgetPassword/Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="${pageContext.request.contextPath}/forgetPassword/changePassword.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-key mr-3"></i>
                 <span class="text-lg">Đổi mật khẩu</span>
             </a>
-            <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="${pageContext.request.contextPath}/logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-sign-out-alt mr-3"></i>
                 <span class="text-lg">Đăng xuất</span>
             </a>

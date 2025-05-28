@@ -144,13 +144,13 @@
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
                 // Determine the homepage based on role
-                String homePage = "Home.jsp"; // Default fallback
+                String homePage = "${pageContext.request.contextPath}/home.jsp"; // Default fallback
                 if ("Direction".equalsIgnoreCase(roleName)) {
-                    homePage = "giamdoc_hehe.jsp";
+                    homePage = "${pageContext.request.contextPath}/view/direction/directionDashboard.jsp";
                 } else if ("Employee".equalsIgnoreCase(roleName)) {
-                    homePage = "nhanviencongty_hehe.jsp";
+                    homePage = "${pageContext.request.contextPath}/view/employee/employeeDashboard.jsp";
                 } else if ("Warehouse".equalsIgnoreCase(roleName)) {
-                    homePage = "nhanvienkho_hehe.jsp";
+                    homePage = "${pageContext.request.contextPath}/view/warehouse/warehouseDashboard.jsp";
                 }
             %>
 

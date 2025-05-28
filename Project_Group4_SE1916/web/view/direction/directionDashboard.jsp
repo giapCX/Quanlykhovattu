@@ -230,38 +230,38 @@
                 </button>
             </div>
             <nav class="space-y-2">
-                <a href="User_profile.jsp" class="nav-item flex items-center p-3">
+                <a href="${pageContext.request.contextPath}/userProfile.jsp" class="nav-item flex items-center p-3">
                     <i class="fas fa-user mr-3 w-6 text-center"></i>
                     <span class="text-lg">Thông tin cá nhân</span>
                     <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
                 </a>
-                <a href="Categories.jsp" class="nav-item flex items-center p-3">
+                <a href="${pageContext.request.contextPath}/categories.jsp" class="nav-item flex items-center p-3">
                     <i class="fas fa-box-open mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh mục vật tư</span>
                     <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
                 </a>
-                <a href="Suppliers.jsp" class="nav-item flex items-center p-3">
+                <a href="${pageContext.request.contextPath}/suppliers.jsp" class="nav-item flex items-center p-3">
                     <i class="fas fa-truck mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh sách nhà cung cấp</span>
                     <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
                 </a>
-                <a href="Pending_requests.jsp" class="nav-item active flex items-center p-3">
+                <a href="${pageContext.request.contextPath}/pendingRequests.jsp" class="nav-item active flex items-center p-3">
                     <i class="fas fa-clipboard-list mr-3 w-6 text-center"></i>
                     <span class="text-lg">Phê duyệt yêu cầu</span>
                     <span class="ml-auto bg-red-500 text-white text-sm px-2 py-1 rounded-full">3</span>
                 </a>
-                <a href="list_user.jsp" class="nav-item flex items-center p-3">
+                <a href="${pageContext.request.contextPath}/listUser.jsp" class="nav-item flex items-center p-3">
                     <i class="fas fa-users mr-3 w-6 text-center"></i>
                     <span class="text-lg">Danh sách nhân viên</span>
                     <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
                 </a>
             </nav>
             <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
-                <a href="forgetPassword/Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+                <a href="${pageContext.request.contextPath}/forgetPassword/changePassword.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                     <i class="fas fa-key mr-3"></i>
                     <span class="text-lg">Đổi mật khẩu</span>
                 </a>
-                <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+                <a href="${pageContext.request.contextPath}/logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     <span class="text-lg">Đăng xuất</span>
                 </a>
@@ -311,7 +311,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                        <a href="inventory_report.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem báo cáo</a>
+                        <a href="${pageContext.request.contextPath}/inventoryReport.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem báo cáo</a>
                     </div>
                 </div>
                 <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-100">
@@ -326,7 +326,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                        <a href="pending_requests.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Duyệt yêu cầu</a>
+                        <a href="${pageContext.request.contextPath}/pendingRequests.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Duyệt yêu cầu</a>
                     </div>
                 </div>
                 <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-200">
@@ -341,7 +341,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                        <a href="cost_report.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem báo cáo</a>
+                        <a href="${pageContext.request.contextPath}/costReport.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem báo cáo</a>
                     </div>
                 </div>
                 <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-300">
@@ -356,7 +356,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                        <a href="low_inventory_report.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
+                        <a href="${pageContext.request.contextPath}/lowInventoryReport.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -395,7 +395,7 @@
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Yêu cầu chờ duyệt</h2>
                         <p class="text-sm text-gray-600 dark:text-gray-300">Danh sách yêu cầu xuất/mua/sửa vật tư</p>
                     </div>
-                    <a href="pending_requests.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
+                    <a href="${pageContext.request.contextPath}/pendingRequests.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full table-auto">
@@ -451,7 +451,7 @@
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Lịch sử yêu cầu</h2>
                         <p class="text-sm text-gray-600 dark:text-gray-300">Lịch sử yêu cầu xuất/mua/sửa vật tư</p>
                     </div>
-                    <a href="request_history.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
+                    <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full table-auto">

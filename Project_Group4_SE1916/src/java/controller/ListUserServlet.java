@@ -1,10 +1,11 @@
-package Controller;
+package controller;
 
-import DAO.Roledao;
-import DAO.Userdao;
+
+import dao.UserDAO;
 import Dal.DBContext;
-import Model.Role;
-import Model.User;
+import dao.RoleDAO;
+import model.Role;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/user")
-public class List_user_servlet extends HttpServlet {
+public class ListUserServlet extends HttpServlet {
 
     private Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306//quan_ly_kho_vat_tu";
@@ -32,7 +33,7 @@ public class List_user_servlet extends HttpServlet {
         // Session Check
         String username = (String) request.getSession().getAttribute("username");
         if (username == null) {
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
         String search = request.getParameter("search");
@@ -61,8 +62,8 @@ public class List_user_servlet extends HttpServlet {
         }
 
         try (Connection conn = DBContext.getConnection()) {
-            Userdao userDAO = new Userdao(conn);
-            Roledao roleDAO = new Roledao(conn);
+            UserDAO userDAO = new UserDAO(conn);
+            RoleDAO roleDAO = new RoleDAO(conn);
 
             // Tổng số user theo search, role, status filter
             int totalRecords = userDAO.countUsersByNameRoleStatus(search, roleId, status);
@@ -84,7 +85,7 @@ public class List_user_servlet extends HttpServlet {
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("totalPages", totalPages);
 
-            request.getRequestDispatcher("List_user.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/listUser.jsp").forward(request, response);
         } catch (Exception e) {
             throw new ServletException(e);
         }

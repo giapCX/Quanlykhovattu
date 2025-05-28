@@ -57,7 +57,7 @@
                                     Thử lại
                                 </button>
                             </a></li>
-                    <li class="payment-item-one-list-item"><a href="../login/loginUser">
+                    <li class="payment-item-one-list-item"><a href="../login.jsp">
                                 <button style="height: 2em; width: 8em; font-size: larger; font-weight: bolder; color: #fff; background-color: #da4453;
                                         border-radius: 10px; border: white; cursor: pointer" type="button">
                                     Hủy bỏ

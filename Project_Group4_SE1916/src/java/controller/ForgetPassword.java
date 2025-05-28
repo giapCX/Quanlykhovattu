@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller;
+package controller;
 
-import DAO.Accountdao;
-import DAO.Userdao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import dao.AccountDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
@@ -25,16 +24,16 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import Model.Account;
-import Model.User;
+import model.Account;
+import model.User;
 
 @WebServlet("/forgetPassword/forget")
-public class Forget_password extends HttpServlet {
+public class ForgetPassword extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("./Forget_password.jsp").forward(request, response);
+        request.getRequestDispatcher("/forgetPassword/forgetPassword.jsp").forward(request, response);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class Forget_password extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../forgetPassword/Confirm_email.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("forgetPassword/confirmEmail.jsp");
         request.setAttribute("message", "Mật khẩu mới đã được gửi đến bạn, vui lòng kiểm tra email.");
         session.setAttribute("passGen", newPassword);
          session.setAttribute("accountForgetPass", account);
@@ -88,7 +87,7 @@ public class Forget_password extends HttpServlet {
     }
 
     private Account getAccountByUsername(String username) {
-        Accountdao accountDB = new Accountdao();
+        AccountDAO accountDB = new AccountDAO();
         try {
             return accountDB.checkAccountExisted(username);
         } catch (Exception e) {
@@ -98,7 +97,7 @@ public class Forget_password extends HttpServlet {
     }
 
     private User getUserByUsername(String username) {
-        Userdao userDB = new Userdao();
+        UserDAO userDB = new UserDAO();
         try {
             return userDB.getUserByUsername(username);
         } catch (Exception e) {
@@ -108,7 +107,7 @@ public class Forget_password extends HttpServlet {
     }
 
     private void updatePassword(String username, String newPassword) {
-        Accountdao accountDB = new Accountdao();
+        AccountDAO accountDB = new AccountDAO();
         accountDB.updatePassword(username, newPassword);
     }
 
@@ -150,7 +149,7 @@ public class Forget_password extends HttpServlet {
     private void setErrorAndForward(HttpServletRequest request, HttpServletResponse response, String message)
             throws ServletException, IOException {
         request.setAttribute("mess", message);
-        request.getRequestDispatcher("./Forget_password.jsp").forward(request, response);
+        request.getRequestDispatcher("/forgetPassword/forgetPassword.jsp").forward(request, response);
     }
 
     private String generateRandomPassword(int length) {

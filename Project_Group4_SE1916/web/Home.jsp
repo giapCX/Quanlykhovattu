@@ -121,7 +121,7 @@
                 <button id="toggleDarkMode" class="bg-gray-200 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600">
                     <i class="fas fa-moon text-gray-700 dark:text-yellow-300 text-lg"></i>
                 </button>
-                <a href="Login.jsp" class="btn-primary text-white px-6 py-2 rounded-lg flex items-center hover:shadow-lg transition-all">
+                <a href="login.jsp" class="btn-primary text-white px-6 py-2 rounded-lg flex items-center hover:shadow-lg transition-all">
                     <i class="fas fa-sign-in-alt mr-2"></i>
                     Đăng nhập
                 </a>
@@ -134,7 +134,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center hero-content">
             <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-fadeInUp">Chào mừng đến với Hệ thống Quản lý Vật tư</h2>
             <p class="text-lg md:text-xl mb-8 animate-fadeInUp delay-100">Quản lý vật tư hiệu quả, dễ dàng và thông minh. Đăng nhập ngay để bắt đầu!</p>
-            <a href="Login.jsp" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-medium inline-flex items-center animate-fadeInUp delay-200">
+            <a href="login.jsp" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-medium inline-flex items-center animate-fadeInUp delay-200">
                 <i class="fas fa-sign-in-alt mr-2"></i>
                 Đăng nhập ngay
             </a>

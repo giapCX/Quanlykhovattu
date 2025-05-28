@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package dao;
 
 import Dal.DBContext;
 import java.sql.*;
 import java.util.*;
-import Model.Account;
-import Model.Role;
+import model.Account;
+import model.Role;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,15 +16,15 @@ import java.util.logging.Logger;
  *
  * @author ASUS
  */
-public class Accountdao extends DBContext {
+public class AccountDAO extends DBContext {
     
     protected Connection connection;
 
-    public Accountdao() {
+    public AccountDAO() {
         this.connection = DBContext.getConnection();
     }
 
-    public Accountdao(Connection connection) {
+    public AccountDAO(Connection connection) {
         this.connection = connection;
     }
     
@@ -39,7 +39,7 @@ public class Accountdao extends DBContext {
             stm.setString(2, username);
             stm.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -77,7 +77,7 @@ public class Accountdao extends DBContext {
                 return premium;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -177,7 +177,7 @@ public class Accountdao extends DBContext {
             }
             return account;
         } catch (SQLException ex) {
-            Logger.getLogger(Accountdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -186,7 +186,7 @@ public class Accountdao extends DBContext {
     }
 
     public static void main(String[] args) {
-        Accountdao dBContext = new Accountdao();
+        AccountDAO dBContext = new AccountDAO();
         System.out.println(dBContext.getNumberOfPremiumUser());
     }
 

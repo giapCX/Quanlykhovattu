@@ -216,28 +216,28 @@
             </button>
         </div>
         <nav class="space-y-2">
-            <a href="User_profile.jsp" class="nav-item flex items-center p-3">
+            <a href="${pageContext.request.contextPath}/userProfile.jsp" class="nav-item flex items-center p-3">
                 <i class="fas fa-user mr-3 w-6 text-center"></i>
                 <span class="text-lg">Thông tin cá nhân</span>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
             </a>
-            <a href="create_request.jsp" class="nav-item flex items-center p-3">
+            <a href="${pageContext.request.contextPath}/createRequest.jsp" class="nav-item flex items-center p-3">
                 <i class="fas fa-file-alt mr-3 w-6 text-center"></i>
                 <span class="text-lg">Tạo yêu cầu</span>
                 <i class="fas fa-chevron-right ml-auto text-sm opacity-50"></i>
             </a>
-            <a href="request_history.jsp" class="nav-item flex items-center p-3">
+            <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="nav-item flex items-center p-3">
                 <i class="fas fa-history mr-3 w-6 text-center"></i>
                 <span class="text-lg">Lịch sử yêu cầu</span>
                 <span class="ml-auto bg-red-500 text-white text-sm px-2 py-1 rounded-full">2</span>
             </a>
         </nav>
         <div class="absolute bottom-0 left-0 right-0 p-6 bg-white bg-opacity-10">
-            <a href="forgetPassword/Change_password.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="${pageContext.request.contextPath}/forgetPassword/changePassword.jsp" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-key mr-3"></i>
                 <span class="text-lg">Đổi mật khẩu</span>
             </a>
-            <a href="logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
+            <a href="${pageContext.request.contextPath}/logout" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20">
                 <i class="fas fa-sign-out-alt mr-3"></i>
                 <span class="text-lg">Đăng xuất</span>
             </a>
@@ -287,7 +287,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem lịch sử</a>
+                    <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem lịch sử</a>
                 </div>
             </div>
             <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-100">
@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
+                    <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem chi tiết</a>
                 </div>
             </div>
             <div class="card bg-white dark:bg-gray-800 animate-fadeInUp delay-200">
@@ -317,19 +317,19 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-                    <a href="request_history.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
+                    <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
                 </div>
             </div>
         </div>
 
         <!-- Quick Actions -->
         <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <button onclick="window.location.href='create_request.jsp'" 
+            <button onclick="window.location.href='${pageContext.request.contextPath}/createRequest.jsp'" 
                     class="btn-primary text-white px-6 py-4 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all">
                 <i class="fas fa-file-alt text-3xl mb-3"></i>
                 <span class="text-lg">Tạo yêu cầu mới</span>
             </button>
-            <button onclick="window.location.href='request_history.jsp'" 
+            <button onclick="window.location.href='${pageContext.request.contextPath}/requestRistory.jsp'" 
                     class="btn-primary text-white px-6 py-4 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all">
                 <i class="fas fa-history text-3xl mb-3"></i>
                 <span class="text-lg">Xem lịch sử yêu cầu</span>
@@ -343,7 +343,7 @@
                     <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Lịch sử yêu cầu</h2>
                     <p class="text-sm text-gray-600 dark:text-gray-300">Danh sách các yêu cầu đã gửi</p>
                 </div>
-                <a href="request_history.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
+                <a href="${pageContext.request.contextPath}/requestHistory.jsp" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">Xem tất cả</a>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full table-auto">

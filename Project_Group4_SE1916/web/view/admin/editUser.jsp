@@ -124,7 +124,7 @@
             </form>
 
             <div class="mt-4 flex justify-center">
-                <a href="List_user.jsp" class="btn-secondary text-white px-6 py-3 rounded-lg">Quay lại Danh sách</a>
+                <a href="${pageContext.request.contextPath}/listUser.jsp" class="btn-secondary text-white px-6 py-3 rounded-lg">Quay lại Danh sách</a>
             </div>
         </div>
     </main>

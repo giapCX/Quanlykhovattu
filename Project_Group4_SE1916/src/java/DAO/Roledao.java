@@ -1,13 +1,13 @@
-package DAO;
-import Model.Role;
+package dao;
+import model.Role;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Roledao {
+public class RoleDAO {
     private Connection conn;
 
-    public Roledao(Connection conn) {
+    public RoleDAO(Connection conn) {
         this.conn = conn;
     }
 

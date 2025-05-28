@@ -2,24 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package dao;
 
-import Model.Role;
-import Model.User;
+import model.Role;
+import model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Userdao {
+public class UserDAO {
 
     private Connection conn;
 
-    public Userdao() {
+    public UserDAO() {
     }
 
-    public Userdao(Connection conn) {
+    public UserDAO(Connection conn) {
         this.conn = conn;
     }
 
@@ -73,7 +73,7 @@ public class Userdao {
                 return user;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Userdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

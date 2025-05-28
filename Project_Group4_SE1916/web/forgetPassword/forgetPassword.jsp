@@ -64,7 +64,7 @@
             </form>
             <p class="login-already">
 
-                <a href="../Login.jsp" class="login-signup-link">Về đăng nhập</a>
+                <a href="../login.jsp" class="login-signup-link">Về đăng nhập</a>
             </p>
         </div>
     </body>

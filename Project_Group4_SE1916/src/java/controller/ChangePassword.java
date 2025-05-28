@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package controller;
 
-import DAO.Accountdao;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,10 +13,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import Model.Account;
-import Model.User;
+import model.Account;
+import model.User;
 
-public class Change_password extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,16 +31,16 @@ public class Change_password extends HttpServlet {
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         if (!newPass.equals(newCfPass)) {
             request.setAttribute("mess2", "Mật khẩu không khớp. Vui lòng nhập lại!");
-            request.getRequestDispatcher("./Change_password.jsp").forward(request, response);
+            request.getRequestDispatcher("/forgetPassword/changePassword.jsp").forward(request, response);
         } else {
             if (newPass.matches(passwordRegex)) {
-                Accountdao accdb = new Accountdao();
+                AccountDAO accdb = new AccountDAO();
                 accdb.updatePassword(username, newPass);
-                response.sendRedirect("./Change_password_success.jsp");
+                response.sendRedirect("./changePasswordSuccess.jsp");
 
             } else {
                 request.setAttribute("mess1", "Mật khẩu phải bao gồm 8 ký tự trở lên và phải bao gồm chữ hoa, chữ thường, số từ 0 đến 9 và bao gồm ký tự đặc biệt");
-                request.getRequestDispatcher("./Change_password.jsp").forward(request, response);
+                request.getRequestDispatcher("/forgetPassword/changePassword.jsp").forward(request, response);
             }
 
         }

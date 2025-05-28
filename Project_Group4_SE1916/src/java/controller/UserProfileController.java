@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import Dal.DBContext;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class User_profile_controller extends HttpServlet {
+public class UserProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class User_profile_controller extends HttpServlet {
         String phone = request.getParameter("phone");
 
         if (username == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("login.jsp");
             return;
         }
 
@@ -30,7 +30,7 @@ public class User_profile_controller extends HttpServlet {
             conn = new DBContext().getConnection();
             if (conn == null) {
                 request.setAttribute("error", "Database connection failed.");
-                request.getRequestDispatcher("User_profile.jsp").forward(request, response);
+                request.getRequestDispatcher("userProfile.jsp").forward(request, response);
                 return;
             }
 
@@ -58,6 +58,6 @@ public class User_profile_controller extends HttpServlet {
                 }
             }
         }
-        request.getRequestDispatcher("User_profile.jsp").forward(request, response);
+        request.getRequestDispatcher("userProfile.jsp").forward(request, response);
     }
 }

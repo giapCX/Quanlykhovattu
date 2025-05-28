@@ -3,27 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller;
+package controller;
 
-import DAO.Roledao;
-import DAO.Userdao;
-import Dal.DBContext;
-import Model.Role;
-import Model.User;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author quanh
+ * @author Giap
  */
-public class Edit_user_servlet extends HttpServlet {
+public class LogoutController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +34,10 @@ public class Edit_user_servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Edit_user_servlet</title>");  
+            out.println("<title>Servlet Logout_controller</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Edit_user_servlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Logout_controller at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,26 +51,15 @@ public class Edit_user_servlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-
-        try (Connection conn = DBContext.getConnection()) {
-            Userdao userDAO = new Userdao(conn);
-            Roledao roleDAO = new Roledao(conn);
-
-            User user = userDAO.getUserById(userId);
-            List<Role> roles = roleDAO.getAllRoles();
-
-            request.setAttribute("user", user);
-            request.setAttribute("roles", roles);
-            request.getRequestDispatcher("Edit_user.jsp").forward(request, response);
-
-        } catch (Exception e) {
-            throw new ServletException(e);
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
         }
-    } 
+        response.sendRedirect("home.jsp");
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -88,20 +71,8 @@ public class Edit_user_servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
-        String status = request.getParameter("status");
-
-        try (Connection conn = DBContext.getConnection()) {
-            Userdao userDAO = new Userdao(conn);
-            userDAO.updateUserRoleAndStatus(userId, roleId, status);
-
-            response.sendRedirect("listuser");
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
+        processRequest(request, response);
     }
-    
 
     /** 
      * Returns a short description of the servlet.

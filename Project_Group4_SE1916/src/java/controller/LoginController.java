@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
 import Dal.DBContext;
-import Model.User;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,12 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Login_controller extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Login_controller extends HttpServlet {
             conn = DBContext.getConnection();
             if (conn == null) {
                 request.setAttribute("error", "Database connection failed. Please try again later.");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
                 return;
             }
 
@@ -58,23 +58,23 @@ public class Login_controller extends HttpServlet {
                     String roleName = rs.getString("role_name");
 
                     // Redirect based on role
-                    String redirectPage = "Login.jsp"; // Default redirect
+                    String redirectPage = "login.jsp"; // Default redirect
                     switch (roleName.toLowerCase()) {
                         case "admin":
-                            redirectPage = "admin_hehe.jsp";
+                            redirectPage = "view/admin/adminDashboard.jsp";
                             break;
                         case "employee":
-                            redirectPage = "nhanviencongty_hehe.jsp";
+                            redirectPage = "view/employee/employeeDashboard.jsp";
                             break;
                         case "direction":
-                            redirectPage = "giamdoc_hehe.jsp";
+                            redirectPage = "view/direction/directionDashboard.jsp";
                             break;
                         case "warehouse":
-                            redirectPage = "nhanvienkho_hehe.jsp";
+                            redirectPage = "view/warehouse/warehouseDashboard.jsp";
                             break;
                         default:
                             request.setAttribute("error", "Role not recognized. Contact administrator.");
-                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                            request.getRequestDispatcher("login.jsp").forward(request, response);
                             return;
                     }
 
@@ -82,12 +82,12 @@ public class Login_controller extends HttpServlet {
                 } else {
                     // Invalid login credentials
                     request.setAttribute("error", "Invalid username or password.");
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         } catch (SQLException e) {
             request.setAttribute("error", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         } finally {
             if (conn != null) {
                 try {

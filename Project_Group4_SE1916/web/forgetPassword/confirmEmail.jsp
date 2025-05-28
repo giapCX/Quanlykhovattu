@@ -110,7 +110,7 @@
                     <input class="login-submit" type="submit" value="Hoàn tất">
 
 
-                    <a  href="./Forget_password.jsp" class="cancel">Hủy bỏ</a>
+                    <a  href="./forgetPassword.jsp" class="cancel">Hủy bỏ</a>
 
                 </form>
             </div>

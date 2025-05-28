@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Util;
+package util;
 
 /**
  *
@@ -17,7 +17,7 @@ import java.util.Date;
  *
  * @author T490
  */
-public class Date_time_helper {
+public class DateTimeHelper {
 
     public static Date toDate(String value, String format) throws ParseException {
         return new SimpleDateFormat(format).parse(value);
@@ -65,7 +65,7 @@ public class Date_time_helper {
         java.util.Date e_from = toDateUtil(from);
         java.util.Date e_to = toDateUtil(to);
         while (true) {
-            java.util.Date d = Date_time_helper.addDays(e_from, days);
+            java.util.Date d = DateTimeHelper.addDays(e_from, days);
             dates.add(toDateSql(d));
             days++;
             if (d.compareTo(e_to) >= 0) {

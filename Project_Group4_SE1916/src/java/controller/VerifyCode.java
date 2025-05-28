@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller;
+package controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-public class Verify_code extends HttpServlet {
+public class VerifyCode extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,9 +33,9 @@ public class Verify_code extends HttpServlet {
         String generatedCode = (String) session.getAttribute("passGen");
         
         if (verifyCode.equals(generatedCode)) {
-            req.getRequestDispatcher("../forgetPassword/Verify_successful.jsp").forward(req, resp);
+            req.getRequestDispatcher("/forgetPassword/verifySuccessful.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("../forgetPassword/Verify_fail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/forgetPassword/verifyFail.jsp").forward(req, resp);
         }
     }
 }

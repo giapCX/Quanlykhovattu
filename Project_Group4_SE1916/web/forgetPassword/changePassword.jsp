@@ -116,17 +116,17 @@
             <% } %>
             <%
                 String role = (String) session.getAttribute("role");
-                String redirectUrl = "Home.jsp"; // Default fallback
+                String redirectUrl = "home.jsp"; // Default fallback
                 if (role != null) {
                     switch (role.toLowerCase()) {
                         case "director":
-                            redirectUrl = "giamdoc_hehe.jsp";
+                            redirectUrl = "view/direction/directionDashboard.jsp";
                             break;
                         case "employee":
-                            redirectUrl = "nhanviencongty_hehe.jsp";
+                            redirectUrl = "view/employee/employeeDashboard.jsp";
                             break;
                         case "warehouse":
-                            redirectUrl = "nhanvienkho_hehe.jsp";
+                            redirectUrl = "view/warehouse/warehouseDashboard.jsp";
                             break;
                     }
                 }

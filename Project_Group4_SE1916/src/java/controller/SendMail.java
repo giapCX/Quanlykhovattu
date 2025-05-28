@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller;
+package controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,10 +21,10 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import Model.User;
+import model.User;
 
 
-public class Send_mail extends HttpServlet {
+public class SendMail extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class Send_mail extends HttpServlet {
 
             try {
                 sendEmail(recipient, message);
-                req.getRequestDispatcher("./Confirm_email.jsp").forward(req, resp);
+                req.getRequestDispatcher("/forgetPassword/confirmEmail.jsp").forward(req, resp);
             } catch (MessagingException e) {
                 setErrorAndForward(req, resp, "Chúng tôi không thể gửi mã code đến email của bạn.");
             }
@@ -88,7 +88,7 @@ public class Send_mail extends HttpServlet {
     private void setErrorAndForward(HttpServletRequest req, HttpServletResponse resp, String message)
     throws ServletException, IOException {
         req.setAttribute("mess", message);
-        req.getRequestDispatcher("./Forget_password.jsp").forward(req, resp);
+        req.getRequestDispatcher("/forgetPassword/forgetPassword.jsp").forward(req, resp);
     }
 
     public static String getRandomNumberString() {

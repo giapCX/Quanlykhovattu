@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package controller;
 
-import DAO.Roledao;
-import DAO.Userdao;
+import dao.RoleDAO;
+import dao.UserDAO;
 import Dal.DBContext;
-import Model.Role;
-import Model.User;
+import model.Role;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author quanh
  */
-public class Add_user_servlet extends HttpServlet {
+public class AddUserServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,13 +63,13 @@ public class Add_user_servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (Connection conn = DBContext.getConnection()) {
-            Userdao userDAO = new Userdao(conn);
-            Roledao roleDAO = new Roledao(conn);
+            UserDAO userDAO = new UserDAO(conn);
+            RoleDAO roleDAO = new RoleDAO(conn);
 
             List<Role> roles = roleDAO.getAllRoles();
 
             request.setAttribute("roles", roles);
-            request.getRequestDispatcher("Add_user.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/addUser.jsp").forward(request, response);
             
 
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class Add_user_servlet extends HttpServlet {
         int roleId = Integer.parseInt(request.getParameter("roleId"));
 
         try (Connection conn = DBContext.getConnection()) {
-        Userdao userDAO = new Userdao(conn);
+        UserDAO userDAO = new UserDAO(conn);
 
         // Mật khẩu mặc định (chưa mã hóa)
         String defaultPassword = "123456";
